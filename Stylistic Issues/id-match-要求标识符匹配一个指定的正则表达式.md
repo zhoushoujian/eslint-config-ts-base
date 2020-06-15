@@ -1,0 +1,116 @@
+## 要求标识符匹配特定的正则表达式 (id-match)
+
+“There are only two hard things in Computer Science: cache invalidation and naming things.” — Phil Karlton
+
+在一个项目中，一致的命名是代码创建经常被低估的一方面。使用得当时，它可以为你的团队节省掉因为不必要纠结和误导浪费的时间。该规则允许你精确地定义和强制使用你的团队应该用的变量和方法名。不再将你自己局限于 camelCase、nake_case、PascalCase 或 oHungarianNotation。该规则覆盖了你所有的需求!
+
+### Rule Details
+该规则要求赋值语句和 function 定义中的标识符匹配某个特定的正则表达式。
+
+### Options
+该规则有个字符串选项，是特定的正则表达式。
+
+例如，强制使用骆驼拼写法命名约定：
+```js
+{
+    "id-match": ["error", "^[a-z]+([A-Z][a-z]+)*$"]
+}
+```
+
+选项 "^[a-z]+([A-Z][a-z]+)*$" 的 错误 代码示例：
+```js
+/*eslint id-match: ["error", "^[a-z]+([A-Z][a-z]+)*$"]*/
+
+var my_favorite_color = "#112C85";
+var _myFavoriteColor  = "#112C85";
+var myFavoriteColor_  = "#112C85";
+var MY_FAVORITE_COLOR = "#112C85";
+function do_something() {
+    // ...
+}
+obj.do_something = function() {
+    // ...
+};
+```
+
+选项 "^[a-z]+([A-Z][a-z]+)*$" 的 正确 代码示例：
+```js
+/*eslint id-match: ["error", "^[a-z]+([A-Z][a-z]+)*$"]*/
+
+var myFavoriteColor   = "#112C85";
+var foo = bar.baz_boom;
+var foo = { qux: bar.baz_boom };
+do_something();
+var obj = {
+    my_pref: 1
+};
+```
+
+该规则有一个对象选项：
+
+"properties": true 要求对象属性匹配特定的正则表达式
+"onlyDeclarations": true 只要求 var、function 和 class 声明匹配特定的正则表达式
+"onlyDeclarations": false 要求所有的变量名匹配特定的正则表达式
+"ignoreDestructuring": false (默认) 强制对解构标识符应用 id-match
+"ignoreDestructuring": true 不检测解构标识符
+
+```properties```
+选项 "^[a-z]+([A-Z][a-z]+)*$", { "properties": true } 的 错误 代码示例：
+```js
+/*eslint id-match: ["error", "^[a-z]+([A-Z][a-z]+)*$", { "properties": true }]*/
+
+var obj = {
+    my_pref: 1
+};
+```
+
+### onlyDeclarations
+选项 "^[a-z]+([A-Z][a-z]+)*$", { "onlyDeclarations": true } 的 正确 代码示例：
+```js
+/*eslint id-match: [2, "^[a-z]+([A-Z][a-z]+)*$", { "onlyDeclarations": true }]*/
+
+do_something(__dirname);
+```
+
+ignoreDestructuring: false
+默认选项 "^[^_]+$", { "ignoreDestructuring": false } 的 错误 代码示例：
+```js
+/*eslint id-match: [2, "^[^_]+$", { "ignoreDestructuring": false }]*/
+
+var { category_id } = query;
+
+var { category_id = 1 } = query;
+
+var { category_id: category_id } = query;
+
+var { category_id: category_alias } = query;
+
+var { category_id: categoryId, ...other_props } = query;
+```
+
+ignoreDestructuring: true
+选项 "^[^_]+$", { "ignoreDestructuring": true } 的 错误 代码示例：
+```js
+/*eslint id-match: [2, "^[^_]+$", { "ignoreDestructuring": true }]*/
+
+var { category_id: category_alias } = query;
+
+var { category_id, ...other_props } = query;
+```
+
+选项 "^[^_]+$", { "ignoreDestructuring": true } 的 正确 代码示例：
+```js
+/*eslint id-match: [2, "^[^_]+$", { "ignoreDestructuring": true }]*/
+
+var { category_id } = query;
+
+var { category_id = 1 } = query;
+
+var { category_id: category_id } = query;
+```
+
+### When Not To Use It
+如果你不想为所有的标识符强制任何特定的命名约定，或如果你的命名约定太复杂，不启用此规则即可。
+
+### Version
+该规则在 ESLint 1.0.0 被引入。

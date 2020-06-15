@@ -1,0 +1,82 @@
+## 禁止或强制在计算属性中使用空格 (computed-property-spacing)
+
+命令行中的 --fix 选项可以自动修复一些该规则报告的问题。
+
+虽然代码风格纯属个人偏好，一些代码风格规范要求或禁止在以下情况的对计算属性内使用空格：
+```js
+/*eslint-env es6*/
+
+var obj = { prop: "value" };
+var a = "prop";
+var x = obj[a]; // computed property in object member expression
+
+var a = "prop";
+var obj = {
+  [a]: "value" // computed property key in object literal (ECMAScript 6)
+};
+```
+
+### Rule Details
+该规则旨在保持计算属性内空格的一致性。
+
+它要求或禁止括号和其内部值之间的空格。括号内相邻的值出现折行的情况，不适用于此规则。
+
+### Options
+该规则有一个字符串选项：
+
+"never" (默认) 禁止在计算属性内使用空格
+"always" 要求在计算属性内使用一个或多个空格
+```never```
+默认选项 "never" 的 错误 代码示例：
+```js
+/*eslint computed-property-spacing: ["error", "never"]*/
+/*eslint-env es6*/
+
+obj[foo ]
+obj[ 'foo']
+var x = {[ b ]: a}
+obj[foo[ bar ]]
+```
+
+默认选项 "never" 的 正确 代码示例：
+```js
+/*eslint computed-property-spacing: ["error", "never"]*/
+/*eslint-env es6*/
+
+obj[foo]
+obj['foo']
+var x = {[b]: a}
+obj[foo[bar]]
+```
+
+always
+选项 "always" 的 错误 代码示例：
+```js
+/*eslint computed-property-spacing: ["error", "always"]*/
+/*eslint-env es6*/
+
+obj[foo]
+var x = {[b]: a}
+obj[ foo]
+obj['foo' ]
+obj[foo[ bar ]]
+var x = {[ b]: a}
+```
+
+选项 "always" 的 正确 代码示例：
+```js
+/*eslint computed-property-spacing: ["error", "always"]*/
+/*eslint-env es6*/
+
+obj[ foo ]
+obj[ 'foo' ]
+var x = {[ b ]: a}
+obj[ foo[ bar ] ]
+```
+
+### When Not To Use It
+如果你并不关注计算属性的一致性的话，关闭此规则即可。
+
+### Version
+该规则在 ESLint 0.23.0 被引入。
+
