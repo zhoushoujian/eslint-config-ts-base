@@ -1,4 +1,4 @@
-## 优先使用对象扩展而不是 Object.assign
+## 优先使用对象扩展而不是 Object.assign (prefer-object-spread)
 
 命令行中的 --fix 选项可以自动修复一些该规则报告的问题。
 
@@ -10,17 +10,17 @@ Rule Details
 错误 代码示例：
 
 ```js
-Object.assign({}, foo)
+Object.assign({}, foo);
 
-Object.assign({}, {foo: 'bar'})
+Object.assign({}, { foo: 'bar' });
 
-Object.assign({ foo: 'bar'}, baz)
+Object.assign({ foo: 'bar' }, baz);
 
-Object.assign({ foo: 'bar' }, Object.assign({ bar: 'foo' }))
+Object.assign({ foo: 'bar' }, Object.assign({ bar: 'foo' }));
 
-Object.assign({}, { foo, bar, baz })
+Object.assign({}, { foo, bar, baz });
 
-Object.assign({}, { ...baz })
+Object.assign({}, { ...baz });
 
 // Object.assign with a single argument that is an object literal
 Object.assign({});
@@ -29,8 +29,8 @@ Object.assign({ foo: bar });
 ```
 
 正确 代码示例：
-```js
 
+```js
 Object.assign(...foo);
 
 // Any Object.assign call without an object literal as the first argument
@@ -38,13 +38,15 @@ Object.assign(foo, { bar: baz });
 
 Object.assign(foo, Object.assign(bar));
 
-Object.assign(foo, { bar, baz })
+Object.assign(foo, { bar, baz });
 
 Object.assign(foo, { ...baz });
 ```
 
 ### When Not To Use It
+
 除非代码库支持 ES2018，否则不应使用此规则。
 
 ### Version
+
 该规则在 ESLint 5.0.0-alpha.3 中被引入。
