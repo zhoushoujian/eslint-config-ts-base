@@ -1,9 +1,8 @@
 {
-  "name": "@shuyun-ep-team/eslint-config",
-  "description": "Kylin's ESLint config with TypeScript support",
+  "name": "eslint-base",
+  "description": "eslint for typescript",
   "license": "MIT",
-  "author": "辫儿哥 (https://github.com/michaelycy)",
-  "version": "1.1.4",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "checkcode": "eslint --cache .",
@@ -12,14 +11,17 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@typescript-eslint/parser": "^2.27.0",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
