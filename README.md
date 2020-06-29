@@ -3,7 +3,7 @@
 ## 介绍
 
 无依赖第三方规则包，启用的所有规则都可以在.eslintc.js 或 rules 文件夹下找到  
-专为typescript而配置  
+专为typescript + react而配置  
 启用的所有规则都有注释，所有规则的详细说明都在 docs 文件夹下，可通过规则名搜到对应规则的文件名
 
 ## 安装
@@ -13,6 +13,15 @@ npm i eslint-base
 ```
 
 ## 使用
+```shell
+module.exports = {
+  extends: ['eslint-base'],
+  # parser: "babel-eslint",  //假如不使用typescript，需要把这行注释取消
+  # put your custom rules here
+  rules: {}
+  # put your other config below
+};
+```
 
 ## 规则说明
 
