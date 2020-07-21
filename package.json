@@ -1,32 +1,36 @@
 {
-  "name": "eslint-base",
+  "name": "eslint-config-ts-base",
   "description": "eslint for typescript",
   "license": "MIT",
-  "version": "0.0.1-alpha.1",
+  "Private": false,
+  "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "checkcode": "eslint --cache .",
-    "checkcode:demo": "eslint --cache -c ./test/.eslintrc.js \"./test/**/*.{js,jsx,ts,tsx}\"",
-    "format:package": "prettier-package-json --write"
+    "checkcode:test": "npx eslint --cache -c ./test/.eslintrc.js \"./test/**/*.{js,jsx,ts,tsx}\"",
+    "format:package": "prettier-package-json --write",
+    "publishToNpm": "node publish"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0"
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "typescript": "^3.8.3"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "eslint": "^6.8.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "eslint": "^6.8.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
     "prettier": "^2.0.4",
     "prettier-package-json": "^2.1.3",
-    "typescript": "^3.8.3"
+    "shelljs": "^0.8.4"
   },
   "keywords": [
     "config",
@@ -37,7 +41,6 @@
     "eslint",
     "eslintconfig",
     "javascript",
-    "styleguide",
     "typescript"
   ]
 }

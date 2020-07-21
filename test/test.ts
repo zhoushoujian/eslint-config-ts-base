@@ -1,5 +1,3 @@
-// import { IService } from './inerface';
-
 export const disaplyName = (params: number) => {
   if (params === 2) {
     params += 1;

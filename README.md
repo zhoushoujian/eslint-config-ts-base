@@ -15,7 +15,7 @@ npm i eslint-base
 ## 使用
 ```shell
 module.exports = {
-  extends: ['eslint-base'],
+  extends: ['eslint-config-ts-base'],
   # parser: "babel-eslint",  //假如不使用typescript，需要把这行注释取消
   # put your custom rules here
   rules: {}

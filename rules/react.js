@@ -42,7 +42,7 @@ module.exports = {
     'react/no-string-refs': 2, //Prevent using string references
     'react/no-unescaped-entities': 2, // Prevent invalid characters from appearing in markup
     'react/no-unknown-property': 2, // Prevent usage of unknown DOM property
-    'react/prop-types': 2, // Prevent missing props validation in a React component definition
+    // 'react/prop-types': 2, // Prevent missing props validation in a React component definition
     'react/react-in-jsx-scope': 2, //Prevent missing React when using JSX
     'react/require-render-return': 2, //Enforce ES5 or ES6 class for returning value in render function
     'react/button-has-type': [

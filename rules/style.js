@@ -23,7 +23,7 @@ module.exports = {
     'space-infix-ops': 2, //要求操作符周围有空格
     'space-unary-ops': 2, //要求在一元操作符之前或之后存在空格
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }], //要求或禁止在类成员之间出现空行
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }], //禁止使用一元操作符 ++ 和 --
+    // 'no-plusplus': ['error', { allowForLoopAfterthoughts: true }], //禁止使用一元操作符 ++ 和 --
     'max-len': [
       'error',
       100,
