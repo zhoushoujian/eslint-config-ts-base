@@ -9,7 +9,7 @@
 ## 安装
 
 ```shell
-npm i eslint-base
+npm i eslint-config-ts-base --save-dev
 ```
 
 ## 使用
