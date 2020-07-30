@@ -12,7 +12,7 @@ module.exports = {
   },
   rules: {
     'arrow-spacing': ['error', { before: true, after: true }], //要求箭头函数的箭头之前或之后有空格用
-    'generator-star-spacing': 2, //强制 generator 函数中 * 号周围有空格
+    // 'generator-star-spacing': 2, //强制 generator 函数中 * 号周围有空格
     'no-duplicate-imports': ['error', { includeExports: true }], //  禁止重复导入
     'no-useless-computed-key': 2, //禁止在对象中使用不必要的计算属性
     'no-useless-rename': 2, //禁止在 import 和 export 和解构赋值时将引用重命名为相同的名字

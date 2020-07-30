@@ -32,7 +32,7 @@ module.exports = {
     'no-useless-concat': 2, //禁止没有必要的字符拼接
     'no-with': 2, //禁用 with 语句
     'vars-on-top': 2, //要求将变量声明放在它们作用域的顶部
-    'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
+    // 'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
     yoda: 2, //要求或者禁止Yoda条件
     radix: ['error', 'as-needed'], //要求必须有基数,但禁止提供基数10
     curly: ['error', 'multi-line'], //要求遵循大括号约定

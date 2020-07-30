@@ -63,17 +63,17 @@ module.exports = {
         ignoreComments: false
       }
     ], //强制使用一致的缩进
-    'no-extra-parens': [
-      'off',
-      'all',
-      {
-        conditionalAssign: true,
-        nestedBinaryExpressions: false,
-        returnAssign: false,
-        ignoreJSX: 'all', // delegate to eslint-plugin-react
-        enforceForArrowConditionals: false
-      }
-    ], //禁止不必要的括号
+    // 'no-extra-parens': [
+    //   'off',
+    //   'all',
+    //   {
+    //     conditionalAssign: true,
+    //     nestedBinaryExpressions: false,
+    //     returnAssign: false,
+    //     ignoreJSX: 'all', // delegate to eslint-plugin-react
+    //     enforceForArrowConditionals: false
+    //   }
+    // ], //禁止不必要的括号
     'no-magic-numbers': [
       'off',
       {
@@ -84,13 +84,13 @@ module.exports = {
       }
     ], //禁止使用魔术数字
     semi: ['error', 'always'], //要求或禁止使用分号代替
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'always',
-        named: 'never',
-        asyncArrow: 'always'
-      }
-    ] //要求或禁止函数圆括号之前有一个空格
+    // 'space-before-function-paren': [
+    //   'error',
+    //   {
+    //     anonymous: 'always',
+    //     named: 'never',
+    //     asyncArrow: 'always'
+    //   }
+    // ] //要求或禁止函数圆括号之前有一个空格
   }
 };

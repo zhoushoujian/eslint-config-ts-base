@@ -62,12 +62,12 @@ module.exports = {
     'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
     'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
     'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
-    'react/jsx-one-expression-per-line': 'off', //One JSX Element Per Line
+    // 'react/jsx-one-expression-per-line': 'off', //One JSX Element Per Line
 
     //React others
     'react/destructuring-assignment': 2, // Enforce consistent usage of destructuring assignment of props, state, and context
     'react/jsx-equals-spacing': 2, //Enforce or disallow spaces around equal signs in JSX attributes.
-    'react/jsx-max-props-per-line': [1, { maximum: 5 }], // Limit maximum of props on a single line in JSX
+    // 'react/jsx-max-props-per-line': [1, { maximum: 5 }], // Limit maximum of props on a single line in JSX
     'react/no-did-update-set-state': 2, //Prevent usage of setState in componentDidUpdate
     'react/no-unused-state': 2, //Prevent definitions of unused state
     'react/no-will-update-set-state': 2, //Prevent usage of setState in componentWillUpdate

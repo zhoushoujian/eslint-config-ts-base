@@ -1,5 +1,9 @@
 module.exports = {
-  extends: [],
+  extends: [
+    // 'plugin:@typescript-eslint/recommended',  // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    // 'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'prettier', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     target:
@@ -121,7 +125,7 @@ module.exports = {
     'no-useless-concat': 2, //禁止没有必要的字符拼接
     'no-with': 2, //禁用 with 语句
     'vars-on-top': 2, //要求将变量声明放在它们作用域的顶部
-    'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
+    // 'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
     yoda: 2, //要求或者禁止Yoda条件
     radix: ['error', 'as-needed'], //要求必须有基数,但禁止提供基数10
     curly: ['error', 'multi-line'], //要求遵循大括号约定
@@ -138,7 +142,7 @@ module.exports = {
 
     //ECMAScript 6
     'arrow-spacing': ['error', { before: true, after: true }], //要求箭头函数的箭头之前或之后有空格用
-    'generator-star-spacing': 2, //强制 generator 函数中 * 号周围有空格
+    // 'generator-star-spacing': 2, //强制 generator 函数中 * 号周围有空格
     'no-duplicate-imports': ['error', { includeExports: true }], //  禁止重复导入
     'no-useless-computed-key': 2, //禁止在对象中使用不必要的计算属性
     'no-useless-rename': 2, //禁止在 import 和 export 和解构赋值时将引用重命名为相同的名字
@@ -160,12 +164,12 @@ module.exports = {
     // 'arrow-parens': ['error', 'as-needed'], //要求箭头函数的参数使用圆括号
 
     //关于风格
-    'array-bracket-newline': ['error', 'consistent'], // 对每个括号要求使用一致的换行符。如果一个括号有换行符，另一个没有，则会报错
+    // 'array-bracket-newline': ['error', 'consistent'], // 对每个括号要求使用一致的换行符。如果一个括号有换行符，另一个没有，则会报错
     camelcase: ['warn', { properties: 'never', ignoreDestructuring: false }], //要求使用骆驼拼写法
     'comma-spacing': 2, //强制在逗号后面使用空格
     'computed-property-spacing': ['error', 'never'], //禁止在计算属性中使用空格
     'func-call-spacing': 2, //禁止在函数标识符和其调用之间有空格
-    'implicit-arrow-linebreak': 2, //强制隐式返回的箭头函数体的位置
+    // 'implicit-arrow-linebreak': 2, //强制隐式返回的箭头函数体的位置
     'key-spacing': ['error', { beforeColon: false, afterColon: true }], //禁止在对象字面量的键和冒号之间存在空格
     'max-nested-callbacks': ['error', 10], // 强制回调函数最大嵌套深度
     'max-statements-per-line': ['error', { max: 3 }], // 强制每一行中所允许的最大语句数量
@@ -174,10 +178,10 @@ module.exports = {
     'no-array-constructor': 2, //禁止使用 Array 构造函数
     'no-bitwise': 2, //禁止使用按位操作符
     'no-multi-assign': 2, //禁止连续赋值
-    'no-multiple-empty-lines': 2, //不允许多个空行
+    'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }], //不允许多个空行
     'no-new-object': 2, //禁止使用 Object 构造函数
     'no-whitespace-before-property': 2, //禁止属性前有空白
-    'nonblock-statement-body-position': 2, //强制单个语句的位置
+    // 'nonblock-statement-body-position': 2, //强制单个语句的位置
     'semi-spacing': 2, //强制分号后有空格
     'semi-style': 2, //强制分号的位置
     'space-infix-ops': 2, //要求操作符周围有空格
@@ -196,8 +200,8 @@ module.exports = {
         ignoreTemplateLiterals: true
       }
     ], //强制行的最大长度
-    'operator-linebreak': 'off', //强制操作符使用一致的换行符风格
-    'object-curly-newline': 'off', //强制在花括号内使用一致的换行符
+    // 'operator-linebreak': 'off', //强制操作符使用一致的换行符风格
+    // 'object-curly-newline': 'off', //强制在花括号内使用一致的换行符
 
     //React相关
     'react/display-name': [0, { ignoreTranspilerName: true }], //防止在React组件定义里丢失displayName
@@ -238,12 +242,12 @@ module.exports = {
     'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
     'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
     'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
-    'react/jsx-one-expression-per-line': 'off', //One JSX Element Per Line
+    // 'react/jsx-one-expression-per-line': 'off', //One JSX Element Per Line
 
     //React others
     'react/destructuring-assignment': 2, // Enforce consistent usage of destructuring assignment of props, state, and context
     'react/jsx-equals-spacing': 2, //Enforce or disallow spaces around equal signs in JSX attributes.
-    'react/jsx-max-props-per-line': [1, { maximum: 5 }], // Limit maximum of props on a single line in JSX
+    // 'react/jsx-max-props-per-line': [1, { maximum: 5 }], // Limit maximum of props on a single line in JSX
     'react/no-did-update-set-state': 2, //Prevent usage of setState in componentDidUpdate
     'react/no-unused-state': 2, //Prevent definitions of unused state
     'react/no-will-update-set-state': 2, //Prevent usage of setState in componentWillUpdate
@@ -327,17 +331,17 @@ module.exports = {
         ignoreComments: false
       }
     ], //强制使用一致的缩进
-    'no-extra-parens': [
-      'off',
-      'all',
-      {
-        conditionalAssign: true,
-        nestedBinaryExpressions: false,
-        returnAssign: false,
-        ignoreJSX: 'all', // delegate to eslint-plugin-react
-        enforceForArrowConditionals: false
-      }
-    ], //禁止不必要的括号
+    // 'no-extra-parens': [
+    //   'off',
+    //   'all',
+    //   {
+    //     conditionalAssign: true,
+    //     nestedBinaryExpressions: false,
+    //     returnAssign: false,
+    //     ignoreJSX: 'all', // delegate to eslint-plugin-react
+    //     enforceForArrowConditionals: false
+    //   }
+    // ], //禁止不必要的括号
     'no-magic-numbers': [
       'off',
       {
@@ -348,14 +352,14 @@ module.exports = {
       }
     ], //禁止使用魔术数字
     semi: ['error', 'always'], //要求或禁止使用分号代替
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'always',
-        named: 'never',
-        asyncArrow: 'always'
-      }
-    ], //要求或禁止函数圆括号之前有一个空格
+    // 'space-before-function-paren': [
+    //   'error',
+    //   {
+    //     anonymous: 'always',
+    //     named: 'never',
+    //     asyncArrow: 'always'
+    //   }
+    // ], //要求或禁止函数圆括号之前有一个空格
 
     //others
     'react/sort-comp': [
@@ -415,7 +419,7 @@ module.exports = {
       }
     ], //强制类方法使用 this
     'dot-notation': ['error', { allowKeywords: true }], //强制尽可能地使用点号
-    'dot-location': ['error', 'property'], //强制在点号之前或之后换行
+    // 'dot-location': ['error', 'property'], //强制在点号之前或之后换行
     'guard-for-in': 'error', //需要约束 for-in
     'max-classes-per-file': 0, //强制每个文件中包含的的类的最大数量
     'no-alert': 'warn', //禁用 Alert
@@ -496,7 +500,7 @@ module.exports = {
     'no-useless-constructor': 'error', //禁用不必要的构造函数
     // 'prefer-template': 'error', //建议使用模板字面量而非字符串连接
     'template-curly-spacing': 'error', //强制模板字符串中空格的使用
-    'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
+    // 'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
     'import/named': 'error', //Verifies that all named imports are part of the set of named exports in the referenced module.
     'import/export': 'error', //Reports funny business with exports, like repeated exports of names or defaults.
     'import/no-named-as-default': 'error', //Reports use of an exported name as the locally imported name of a default export.
@@ -514,27 +518,27 @@ module.exports = {
     'import/no-self-import': 'error', //Forbid a module from importing itself
     'import/no-useless-path-segments': ['error', { commonjs: true }], //use this rule to prevent unnecessary path segments in import and require statements.
     'global-require': 'error', //use this rule to prevent unnecessary path segments in import and require statements.
-    'comma-style': [
-      'error',
-      'last',
-      {
-        exceptions: {
-          ArrayExpression: false,
-          ArrayPattern: false,
-          ArrowFunctionExpression: false,
-          CallExpression: false,
-          FunctionDeclaration: false,
-          FunctionExpression: false,
-          ImportDeclaration: false,
-          ObjectExpression: false,
-          ObjectPattern: false,
-          VariableDeclaration: false,
-          NewExpression: false
-        }
-      }
-    ], //逗号风格
+    // 'comma-style': [
+    //   'error',
+    //   'last',
+    //   {
+    //     exceptions: {
+    //       ArrayExpression: false,
+    //       ArrayPattern: false,
+    //       ArrowFunctionExpression: false,
+    //       CallExpression: false,
+    //       FunctionDeclaration: false,
+    //       FunctionExpression: false,
+    //       ImportDeclaration: false,
+    //       ObjectExpression: false,
+    //       ObjectPattern: false,
+    //       VariableDeclaration: false,
+    //       NewExpression: false
+    //     }
+    //   }
+    // ], //逗号风格
     'eol-last': ['error', 'always'], //要求或禁止文件末尾保留一行空行
-    'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
+    // 'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
     'lines-around-directive': [
       'error',
       {
@@ -542,26 +546,26 @@ module.exports = {
         after: 'always'
       }
     ], //?
-    'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
-    'no-mixed-operators': [
-      'error',
-      {
-        // the list of arthmetic groups disallows mixing `%` and `**`
-        // with other arithmetic operators.
-        groups: [
-          ['%', '**'],
-          ['%', '+'],
-          ['%', '-'],
-          ['%', '*'],
-          ['%', '/'],
-          ['/', '*'],
-          ['&', '|', '<<', '>>', '>>>'],
-          ['==', '!=', '===', '!=='],
-          ['&&', '||']
-        ],
-        allowSamePrecedence: false
-      }
-    ], //禁止混合使用不同的操作符
+    // 'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
+    // 'no-mixed-operators': [
+    //   'error',
+    //   {
+    //     // the list of arthmetic groups disallows mixing `%` and `**`
+    //     // with other arithmetic operators.
+    //     groups: [
+    //       ['%', '**'],
+    //       ['%', '+'],
+    //       ['%', '-'],
+    //       ['%', '*'],
+    //       ['%', '/'],
+    //       ['/', '*'],
+    //       ['&', '|', '<<', '>>', '>>>'],
+    //       ['==', '!=', '===', '!=='],
+    //       ['&&', '||']
+    //     ],
+    //     allowSamePrecedence: false
+    //   }
+    // ], //禁止混合使用不同的操作符
     'no-nested-ternary': 'error', //禁止使用嵌套的三元表达式
     'no-restricted-syntax': [
       'error',
@@ -580,10 +584,10 @@ module.exports = {
     'no-tabs': 'error', // 禁用 tab
     'switch-colon-spacing': ['error', { after: true, before: false }], //强制在 switch 的冒号左右有空格
     'template-tag-spacing': ['error', 'never'], //要求或禁止在模板标记和它们的字面量之间有空格
-    'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
-    'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }], // Enforce or disallow spaces inside of curly braces in JSX attributes and expressions.
+    // 'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
+    // 'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }], // Enforce or disallow spaces inside of curly braces in JSX attributes and expressions.
     'react/self-closing-comp': 'error', //Prevent extra closing tags for components without children
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
+    // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
     // 'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
     'react/no-unused-prop-types': [
       'error',
@@ -608,13 +612,13 @@ module.exports = {
     'react/no-typos': 'error', //Prevents common typos
     'react/no-access-state-in-setstate': 'error', //Prevent using this.state within a this.setState
     'react/no-this-in-sfc': 'error', //Prevent `this` from being used in stateless functional components
-    'react/jsx-curly-newline': [
-      'error',
-      {
-        multiline: 'consistent',
-        singleline: 'consistent'
-      }
-    ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
+    // 'react/jsx-curly-newline': [
+    //   'error',
+    //   {
+    //     multiline: 'consistent',
+    //     singleline: 'consistent'
+    //   }
+    // ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
     // 'react/jsx-props-no-spreading': [
     //   'warn',
     //   {

@@ -8,7 +8,7 @@ module.exports = {
       }
     ], //强制类方法使用 this
     'dot-notation': ['error', { allowKeywords: true }], //强制尽可能地使用点号
-    'dot-location': ['error', 'property'], //强制在点号之前或之后换行
+    // 'dot-location': ['error', 'property'], //强制在点号之前或之后换行
     'guard-for-in': 'error', ////需要约束 for-in
     'max-classes-per-file': 0, //强制每个文件中包含的的类的最大数量
     'no-alert': 'warn', //禁用 Alert
@@ -89,7 +89,7 @@ module.exports = {
     'no-useless-constructor': 'error', //禁用不必要的构造函数
     // 'prefer-template': 'error', //建议使用模板字面量而非字符串连接
     'template-curly-spacing': 'error', //强制模板字符串中空格的使用
-    'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
+    // 'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
     'import/named': 'error', //Verifies that all named imports are part of the set of named exports in the referenced module.
     'import/export': 'error', //Reports funny business with exports, like repeated exports of names or defaults.
     'import/no-named-as-default': 'error', //Reports use of an exported name as the locally imported name of a default export.
@@ -107,27 +107,27 @@ module.exports = {
     'import/no-self-import': 'error', //Forbid a module from importing itself
     'import/no-useless-path-segments': ['error', { commonjs: true }], //use this rule to prevent unnecessary path segments in import and require statements.
     'global-require': 'error', //use this rule to prevent unnecessary path segments in import and require statements.
-    'comma-style': [
-      'error',
-      'last',
-      {
-        exceptions: {
-          ArrayExpression: false,
-          ArrayPattern: false,
-          ArrowFunctionExpression: false,
-          CallExpression: false,
-          FunctionDeclaration: false,
-          FunctionExpression: false,
-          ImportDeclaration: false,
-          ObjectExpression: false,
-          ObjectPattern: false,
-          VariableDeclaration: false,
-          NewExpression: false
-        }
-      }
-    ], //逗号风格 => off
+    // 'comma-style': [
+    //   'error',
+    //   'last',
+    //   {
+    //     exceptions: {
+    //       ArrayExpression: false,
+    //       ArrayPattern: false,
+    //       ArrowFunctionExpression: false,
+    //       CallExpression: false,
+    //       FunctionDeclaration: false,
+    //       FunctionExpression: false,
+    //       ImportDeclaration: false,
+    //       ObjectExpression: false,
+    //       ObjectPattern: false,
+    //       VariableDeclaration: false,
+    //       NewExpression: false
+    //     }
+    //   }
+    // ], //逗号风格 => off
     'eol-last': ['error', 'always'], //要求或禁止文件末尾保留一行空行
-    'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
+    // 'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
     'lines-around-directive': [
       'error',
       {
@@ -135,26 +135,26 @@ module.exports = {
         after: 'always'
       }
     ], //?
-    'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
-    'no-mixed-operators': [
-      'error',
-      {
-        // the list of arthmetic groups disallows mixing `%` and `**`
-        // with other arithmetic operators.
-        groups: [
-          ['%', '**'],
-          ['%', '+'],
-          ['%', '-'],
-          ['%', '*'],
-          ['%', '/'],
-          ['/', '*'],
-          ['&', '|', '<<', '>>', '>>>'],
-          ['==', '!=', '===', '!=='],
-          ['&&', '||']
-        ],
-        allowSamePrecedence: false
-      }
-    ], //禁止混合使用不同的操作符
+    // 'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
+    // 'no-mixed-operators': [
+    //   'error',
+    //   {
+    //     // the list of arthmetic groups disallows mixing `%` and `**`
+    //     // with other arithmetic operators.
+    //     groups: [
+    //       ['%', '**'],
+    //       ['%', '+'],
+    //       ['%', '-'],
+    //       ['%', '*'],
+    //       ['%', '/'],
+    //       ['/', '*'],
+    //       ['&', '|', '<<', '>>', '>>>'],
+    //       ['==', '!=', '===', '!=='],
+    //       ['&&', '||']
+    //     ],
+    //     allowSamePrecedence: false
+    //   }
+    // ], //禁止混合使用不同的操作符
     'no-nested-ternary': 'error', //禁止使用嵌套的三元表达式
     'no-restricted-syntax': [
       'error',
@@ -173,10 +173,10 @@ module.exports = {
     'no-tabs': 'error', // 禁用 tab
     'switch-colon-spacing': ['error', { after: true, before: false }], //强制在 switch 的冒号左右有空格
     'template-tag-spacing': ['error', 'never'], //要求或禁止在模板标记和它们的字面量之间有空格
-    'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
+    // 'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
     'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }], // Enforce or disallow spaces inside of curly braces in JSX attributes and expressions.
-    'react/self-closing-comp': 'error', //Prevent extra closing tags for components without children
-    'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
+    //'react/self-closing-comp': 'error', //Prevent extra closing tags for components without children
+    // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
     // 'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
     'react/no-unused-prop-types': [
       'error',
@@ -201,13 +201,13 @@ module.exports = {
     'react/no-typos': 'error', //Prevents common typos
     'react/no-access-state-in-setstate': 'error', //Prevent using this.state within a this.setState
     'react/no-this-in-sfc': 'error', //Prevent `this` from being used in stateless functional components
-    'react/jsx-curly-newline': [
-      'error',
-      {
-        multiline: 'consistent',
-        singleline: 'consistent'
-      }
-    ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
+    // 'react/jsx-curly-newline': [
+    //   'error',
+    //   {
+    //     multiline: 'consistent',
+    //     singleline: 'consistent'
+    //   }
+    // ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
     // 'react/jsx-props-no-spreading': [
     //   'warn',
     //   {

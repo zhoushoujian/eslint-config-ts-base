@@ -18,7 +18,7 @@ export function getName(params: string, name: string) {
     return name;
   }
 
-  test();
+  test()
 
   return undefined;
 }
@@ -26,3 +26,5 @@ export function getName(params: string, name: string) {
 function test(): number {
   return 1;
 }
+
+
