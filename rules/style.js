@@ -26,7 +26,7 @@ module.exports = {
     // 'no-plusplus': ['error', { allowForLoopAfterthoughts: true }], //禁止使用一元操作符 ++ 和 --
     'max-len': [
       'error',
-      100,
+      150,
       2,
       {
         ignoreUrls: true,

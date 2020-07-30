@@ -3,7 +3,7 @@
   "description": "eslint for typescript",
   "license": "MIT",
   "Private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "scripts": {
     "checkcode:test": "npx eslint --cache -c ./test/.eslintrc.js \"./test/**/*.{js,jsx,ts,tsx}\"",
