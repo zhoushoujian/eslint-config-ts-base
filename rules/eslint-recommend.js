@@ -15,7 +15,6 @@ module.exports = {
     'no-empty-character-class': 2, //禁止在正则表达式中出现空字符集
     'no-ex-assign': 2, // 禁止对 catch 子句中的异常重新赋值
     'no-extra-boolean-cast': 2, //禁止不必要的布尔类型转换
-    'no-extra-semi': 2, //禁用不必要的分号
     'no-func-assign': 2, //禁止对 function 声明重新赋值
     'no-inner-declarations': 2, //禁止在嵌套的语句块中出现变量或 function 声明
     'no-invalid-regexp': 2, //禁止在 RegExp 构造函数中出现无效的正则表达式
@@ -52,7 +51,6 @@ module.exports = {
     'constructor-super': 2, // 验证构造函数中 super() 的调用
     'no-class-assign': 2, //不允许修改类声明的变量
     'no-const-assign': 2, //不允许改变用const声明的变量
-    'no-dupe-class-members': 2, //不允许类成员中有重复的名称
     'no-new-symbol': 2, //禁止 Symbolnew 操作符和 new 一起使用
     'no-this-before-super': 2, //在构造函数中禁止在调用super()之前使用this或super
     'require-yield': 2 //禁用函数内没有yield的 generator 函数

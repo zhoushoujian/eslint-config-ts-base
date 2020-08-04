@@ -1,4 +1,5 @@
-强制 function 声明或表达式的一致性 (func-style)
+## 强制 function 声明或表达式的一致性 (func-style)
+
 在 Javascript 中，有两种方式定义函数：function 声明和 function 表达式。函数声明是以 function 关键字开头，然后是函数的名字，其次是它的参数和函数主体，例如：
 ```js
 function doSomething() {

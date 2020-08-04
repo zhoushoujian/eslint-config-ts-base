@@ -7,12 +7,10 @@ module.exports = {
         exceptMethods: []
       }
     ], //强制类方法使用 this
-    'dot-notation': ['error', { allowKeywords: true }], //强制尽可能地使用点号
     // 'dot-location': ['error', 'property'], //强制在点号之前或之后换行
     'guard-for-in': 'error', ////需要约束 for-in
     'max-classes-per-file': 0, //强制每个文件中包含的的类的最大数量
     'no-alert': 'warn', //禁用 Alert
-    'no-empty-function': 0, //禁止出现空函数
     'no-new-func': 'error', //禁止使用 new 以避免产生副作用
     'no-restricted-properties': [
       'error',
@@ -68,15 +66,6 @@ module.exports = {
     'no-lone-blocks': 'error', //禁用不必要的嵌套块
     'no-loop-func': 'error', //禁止循环中存在函数
     'no-return-assign': ['error', 'always'], //禁止在返回语句中赋值
-    'no-throw-literal': 'error', //限制可以被抛出的异常
-    // 'no-unused-expressions': [
-    //   'error',
-    //   {
-    //     allowShortCircuit: true,
-    //     allowTernary: true,
-    //     allowTaggedTemplates: true
-    //   }
-    // ], //禁止未使用过的表达式
     'no-void': 'error', //禁止使用void操作符
     'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }], // 要求使用 Error 对象作为 Promise 拒绝的原因
     'no-await-in-loop': 'error', //禁止在循环中 出现 await
@@ -86,7 +75,6 @@ module.exports = {
         allowParens: true
       }
     ], //禁止在可能与比较操作符相混淆的地方使用箭头函数
-    'no-useless-constructor': 'error', //禁用不必要的构造函数
     // 'prefer-template': 'error', //建议使用模板字面量而非字符串连接
     'template-curly-spacing': 'error', //强制模板字符串中空格的使用
     // 'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
@@ -107,25 +95,6 @@ module.exports = {
     'import/no-self-import': 'error', //Forbid a module from importing itself
     'import/no-useless-path-segments': ['error', { commonjs: true }], //use this rule to prevent unnecessary path segments in import and require statements.
     'global-require': 'error', //use this rule to prevent unnecessary path segments in import and require statements.
-    // 'comma-style': [
-    //   'error',
-    //   'last',
-    //   {
-    //     exceptions: {
-    //       ArrayExpression: false,
-    //       ArrayPattern: false,
-    //       ArrowFunctionExpression: false,
-    //       CallExpression: false,
-    //       FunctionDeclaration: false,
-    //       FunctionExpression: false,
-    //       ImportDeclaration: false,
-    //       ObjectExpression: false,
-    //       ObjectPattern: false,
-    //       VariableDeclaration: false,
-    //       NewExpression: false
-    //     }
-    //   }
-    // ], //逗号风格 => off
     'eol-last': ['error', 'always'], //要求或禁止文件末尾保留一行空行
     // 'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
     'lines-around-directive': [
@@ -135,26 +104,6 @@ module.exports = {
         after: 'always'
       }
     ], //?
-    // 'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
-    // 'no-mixed-operators': [
-    //   'error',
-    //   {
-    //     // the list of arthmetic groups disallows mixing `%` and `**`
-    //     // with other arithmetic operators.
-    //     groups: [
-    //       ['%', '**'],
-    //       ['%', '+'],
-    //       ['%', '-'],
-    //       ['%', '*'],
-    //       ['%', '/'],
-    //       ['/', '*'],
-    //       ['&', '|', '<<', '>>', '>>>'],
-    //       ['==', '!=', '===', '!=='],
-    //       ['&&', '||']
-    //     ],
-    //     allowSamePrecedence: false
-    //   }
-    // ], //禁止混合使用不同的操作符
     'no-nested-ternary': 'error', //禁止使用嵌套的三元表达式
     'no-restricted-syntax': [
       'error',
@@ -173,11 +122,7 @@ module.exports = {
     'no-tabs': 'error', // 禁用 tab
     'switch-colon-spacing': ['error', { after: true, before: false }], //强制在 switch 的冒号左右有空格
     'template-tag-spacing': ['error', 'never'], //要求或禁止在模板标记和它们的字面量之间有空格
-    // 'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
     'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }], // Enforce or disallow spaces inside of curly braces in JSX attributes and expressions.
-    //'react/self-closing-comp': 'error', //Prevent extra closing tags for components without children
-    // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
-    // 'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
     'react/no-unused-prop-types': [
       'error',
       {
@@ -195,27 +140,11 @@ module.exports = {
         beforeClosing: 'never'
       }
     ], // Validate whitespace in and around the JSX opening and closing brackets
-    // 'react/no-array-index-key': 'error', //Prevent usage of Array index in keys
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }], //Forbid foreign propTypes
     'react/no-redundant-should-component-update': 'error', //Prevent usage of shouldComponentUpdate when extending React.PureComponent
     'react/no-typos': 'error', //Prevents common typos
     'react/no-access-state-in-setstate': 'error', //Prevent using this.state within a this.setState
     'react/no-this-in-sfc': 'error', //Prevent `this` from being used in stateless functional components
-    // 'react/jsx-curly-newline': [
-    //   'error',
-    //   {
-    //     multiline: 'consistent',
-    //     singleline: 'consistent'
-    //   }
-    // ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
-    // 'react/jsx-props-no-spreading': [
-    //   'warn',
-    //   {
-    //     html: 'enforce',
-    //     custom: 'enforce',
-    //     exceptions: []
-    //   }
-    // ], //Disallow JSX props spreading
     'jsx-a11y/aria-role': ['error', { ignoreNonDom: false }], //aria-role
     'jsx-a11y/aria-props': 'error', //Elements cannot use an invalid ARIA attribute. This will fail if it finds an `aria-*` property
     'jsx-a11y/aria-proptypes': 'error', //ARIA state and property values must be valid.

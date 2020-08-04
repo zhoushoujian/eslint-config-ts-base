@@ -3,28 +3,38 @@
   "description": "eslint for typescript",
   "license": "MIT",
   "Private": false,
-  "version": "0.0.4",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "checkcode:test": "npx eslint --cache -c ./test/.eslintrc.js \"./test/**/*.{js,jsx,ts,tsx}\"",
-    "publishToNpm": "node publish"
+    "checkcode:all": "npm run checkcode:index && npm run checkcode:base && npm run checkcode:react && npm run checkcode:vue && npm run checkcode:typescript",
+    "checkcode:index": "eslint -c ./test/.eslintrc.index.js \"./test/index.ts\"",
+    "checkcode:base": "eslint -c ./test/.eslintrc.base.js \"./test/base.js\"",
+    "checkcode:react": "npx eslint -c ./test/.eslintrc.react.js \"./test/react.jsx\"",
+    "checkcode:vue": "eslint -c ./test/.eslintrc.vue.js \"./test/vue.vue\"",
+    "checkcode:typescript": "eslint -c ./test/.eslintrc.ts.js \"./test/typescript.ts\"",
+    "publishToNpm": "node scripts/publish"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.0.4",
-    "typescript": "^3.8.3"
+    "vue-eslint-parser": "^7.1.0"
   },
   "peerDependencies": {
     "eslint": "^6.8.0"
   },
   "devDependencies": {
+    "typescript": "^3.8.3",
+    "react": "^16.13.1",
     "shelljs": "^0.8.4"
   },
   "keywords": [

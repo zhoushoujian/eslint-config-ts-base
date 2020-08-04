@@ -1,26 +1,23 @@
 module.exports = {
+  parser: "babel-eslint",
   extends: [
     './rules/airbnb.js',
     './rules/best-practices.js',
+    './rules/disabled-by-typescript.js',
     './rules/es6.js',
     './rules/eslint-recommend.js',
     './rules/imports.js',
     './rules/others.js',
-    './rules/style.js'
-  ].map(require.resolve),
-  parser: '@typescript-eslint/parser',
+    './rules/style.js',
+  ],
   parserOptions: {
-    target:
-      'es5' /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
-    module:
-      'ESNext' /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
+    target: 'es5',
+    module: 'ESNext',
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true,
-      tsx: true,
       modules: true
-    }
+    },
   },
   env: {
     browser: true,
@@ -32,16 +29,17 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json']
+        extensions: ['.js', '.json']
       }
     },
-    'import/extensions': ['.js', '.ts', '.mjs', '.jsx', '.tsx']
+    'import/extensions': ['.js']
   },
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx']
-    }
-  ],
-  plugins: ['import', '@typescript-eslint'],
-  rules: {}
+  plugins: ['import'],
+  rules: {
+    "@typescript-eslint/no-throw-literal": ["off"],
+    "@typescript-eslint/dot-notation": ["off"],
+    "@typescript-eslint/await-thenable": ["off"],
+    "no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": ["off"]
+  }
 };

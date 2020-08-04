@@ -1,9 +1,8 @@
-# eslint-base
+# eslint-config-ts-base
 
 ## 介绍
 
 无依赖第三方规则包，启用的所有规则都可以在.eslintc.js 或 rules 文件夹下找到  
-专为typescript + react而配置  
 启用的所有规则都有注释，所有规则的详细说明都在 docs 文件夹下，可通过规则名搜到对应规则的文件名
 
 ## 安装
@@ -13,14 +12,51 @@ npm i eslint-config-ts-base --save-dev
 ```
 
 ## 使用
+
+将下面的代码保存至项目根目录，文件名为.eslintrc.json
+`默认用法`
+
 ```shell
-module.exports = {
-  extends: ['eslint-config-ts-base'],
-  # parser: "babel-eslint",  //假如不使用typescript，需要把这行注释取消
-  # put your custom rules here
-  rules: {}
-  # put your other config below
-};
+{
+  "extends": ["eslint-config-ts-base"],
+  "rules": {}
+}
+```
+
+`仅使用javascript规则的用法`
+
+```shell
+{
+  "extends": ["eslint-config-ts-base/base"],
+  "rules": {}
+}
+```
+
+`仅使用react规则的用法`
+
+```shell
+{
+  "extends": ["eslint-config-ts-base/react"],
+  "rules": {}
+}
+```
+
+`仅使用vue规则的用法`
+
+```shell
+{
+  "extends": ["eslint-config-ts-base/vue"],
+  "rules": {}
+}
+```
+
+`仅使用typescript规则的用法`
+
+```shell
+{
+  "extends": ["eslint-config-ts-base/typescript"],
+  "rules": {}
+}
 ```
 
 ## 规则说明
@@ -38,3 +74,17 @@ module.exports = {
 `eslint-plugin-jsx-a11y官方地址`：https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
 `eslint-plugin-react-hooks官方地址`：https://github.com/facebook/react/tree/c11015ff4f610ac2924d1fc6d569a17657a404fd/packages/eslint-plugin-react-hooks
 `eslint-plugin-import官方地址`：https://github.com/benmosher/eslint-plugin-import
+
+### 代码提交类型说明：
+
+`type` :(required)代表提交类型；如修改一个 bug 或者是添加一个新的 feature。类型有以下几种：
+
+- feat :新功能（feature）
+- fix :修复 bug
+- docs :仅修改了文档，如 README、CHANGLOG 等
+- style :仅修改了空格、缩进、逗号、单双引号等，不修改代码逻辑
+- refactor :代码重构，没有新增功能或者修改 bug
+- perf :优化相关，比如提升性能、体验
+- test :测试用例，单元测试、集成测试
+- chore :改进构建流程或添加新依赖、工具等
+- revert :回滚代码到上一次提交

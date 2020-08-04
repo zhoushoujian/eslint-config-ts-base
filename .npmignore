@@ -1,7 +1,9 @@
-demo
-scripts
-.commitlintrc.js
-.huskyrc.js
-.eslintrc.js
-.eslintigonore
 .vscode
+dist
+docs
+lib
+node_modules
+.editorconfig
+.eslintigonore
+.gitignore
+LICENSE

@@ -1,7 +1,5 @@
 module.exports = {
   extends: [
-    // 'plugin:@typescript-eslint/recommended',  // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    // 'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
     'prettier', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
   ],
   parser: '@typescript-eslint/parser',
@@ -15,8 +13,9 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
       tsx: true,
-      modules: true
-    }
+      modules: true,
+    },
+    project: './tsconfig.json'
   },
   rules: {
     // "0"表示忽略问题，等同于"off";
@@ -27,6 +26,7 @@ module.exports = {
     // eslint-plugin-jsx-a11y官方地址：https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
     // eslint-plugin-react-hooks官方地址：https://github.com/facebook/react/tree/c11015ff4f610ac2924d1fc6d569a17657a404fd/packages/eslint-plugin-react-hooks
     // eslint-plugin-import官方地址：https://github.com/benmosher/eslint-plugin-import
+    // @typescript-eslint/eslint-plugin官方地址: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 
     // eslint推荐的规则
     'for-direction': 2, //强制 “for” 循环中更新子句的计数器朝着正确的方向移动
@@ -44,7 +44,6 @@ module.exports = {
     'no-empty-character-class': 2, //禁止在正则表达式中出现空字符集
     'no-ex-assign': 2, // 禁止对 catch 子句中的异常重新赋值
     'no-extra-boolean-cast': 2, //禁止不必要的布尔类型转换
-    'no-extra-semi': 2, //禁用不必要的分号
     'no-func-assign': 2, //禁止对 function 声明重新赋值
     'no-inner-declarations': 2, //禁止在嵌套的语句块中出现变量或 function 声明
     'no-invalid-regexp': 2, //禁止在 RegExp 构造函数中出现无效的正则表达式
@@ -81,7 +80,6 @@ module.exports = {
     'constructor-super': 2, // 验证构造函数中 super() 的调用
     'no-class-assign': 2, //不允许修改类声明的变量
     'no-const-assign': 2, //不允许改变用const声明的变量
-    'no-dupe-class-members': 2, //不允许类成员中有重复的名称
     'no-new-symbol': 2, //禁止 Symbolnew 操作符和 new 一起使用
     'no-this-before-super': 2, //在构造函数中禁止在调用super()之前使用this或super
     'require-yield': 2, //禁用函数内没有yield的 generator 函数
@@ -166,28 +164,21 @@ module.exports = {
     //关于风格
     // 'array-bracket-newline': ['error', 'consistent'], // 对每个括号要求使用一致的换行符。如果一个括号有换行符，另一个没有，则会报错
     camelcase: ['warn', { properties: 'never', ignoreDestructuring: false }], //要求使用骆驼拼写法
-    'comma-spacing': 2, //强制在逗号后面使用空格
     'computed-property-spacing': ['error', 'never'], //禁止在计算属性中使用空格
-    'func-call-spacing': 2, //禁止在函数标识符和其调用之间有空格
-    // 'implicit-arrow-linebreak': 2, //强制隐式返回的箭头函数体的位置
     'key-spacing': ['error', { beforeColon: false, afterColon: true }], //禁止在对象字面量的键和冒号之间存在空格
     'max-nested-callbacks': ['error', 10], // 强制回调函数最大嵌套深度
     'max-statements-per-line': ['error', { max: 3 }], // 强制每一行中所允许的最大语句数量
     'new-cap': 2, //要求构造函数首字母大写
     'new-parens': 2, //要求调用无参构造函数时带括号
-    'no-array-constructor': 2, //禁止使用 Array 构造函数
     'no-bitwise': 2, //禁止使用按位操作符
     'no-multi-assign': 2, //禁止连续赋值
     'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }], //不允许多个空行
     'no-new-object': 2, //禁止使用 Object 构造函数
     'no-whitespace-before-property': 2, //禁止属性前有空白
-    // 'nonblock-statement-body-position': 2, //强制单个语句的位置
     'semi-spacing': 2, //强制分号后有空格
     'semi-style': 2, //强制分号的位置
     'space-infix-ops': 2, //要求操作符周围有空格
     'space-unary-ops': 2, //要求在一元操作符之前或之后存在空格
-    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }], //要求或禁止在类成员之间出现空行
-    // 'no-plusplus': ['error', { allowForLoopAfterthoughts: true }], //禁止使用一元操作符 ++ 和 --
     'max-len': [
       'error',
       150,
@@ -200,8 +191,6 @@ module.exports = {
         ignoreTemplateLiterals: true
       }
     ], //强制行的最大长度
-    // 'operator-linebreak': 'off', //强制操作符使用一致的换行符风格
-    // 'object-curly-newline': 'off', //强制在花括号内使用一致的换行符
 
     //React相关
     'react/display-name': [0, { ignoreTranspilerName: true }], //防止在React组件定义里丢失displayName
@@ -222,7 +211,6 @@ module.exports = {
     'react/no-string-refs': 2, //Prevent using string references
     'react/no-unescaped-entities': 2, // Prevent invalid characters from appearing in markup
     'react/no-unknown-property': 2, // Prevent usage of unknown DOM property
-    // 'react/prop-types': 2, // Prevent missing props validation in a React component definition
     'react/react-in-jsx-scope': 2, //Prevent missing React when using JSX
     'react/require-render-return': 2, //Enforce ES5 or ES6 class for returning value in render function
     'react/button-has-type': [
@@ -234,134 +222,13 @@ module.exports = {
       }
     ], //Prevent usage of `button` elements without an explicit `type` attribute. If you use only `"submit"` buttons, you can disable this rule
     'react/no-danger': 0, //Prevent usage of dangerous JSX properties
-
-    //JSX指定的规则
-    'react/jsx-boolean-value': [2, 'always'], //Enforce boolean attributes notation in JSX
-    'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }], //Enforce curly braces or disallow unnecessary curly braces in JSX props and/or children.
-    'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }], // Restrict file extensions that may contain JSX
-    'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
-    'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
-    'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
-    // 'react/jsx-one-expression-per-line': 'off', //One JSX Element Per Line
-
-    //React others
     'react/destructuring-assignment': 2, // Enforce consistent usage of destructuring assignment of props, state, and context
     'react/jsx-equals-spacing': 2, //Enforce or disallow spaces around equal signs in JSX attributes.
-    // 'react/jsx-max-props-per-line': [1, { maximum: 5 }], // Limit maximum of props on a single line in JSX
     'react/no-did-update-set-state': 2, //Prevent usage of setState in componentDidUpdate
     'react/no-unused-state': 2, //Prevent definitions of unused state
     'react/no-will-update-set-state': 2, //Prevent usage of setState in componentWillUpdate
     'react/prefer-es6-class': 2, //react/prefer-es6-class
     'react/void-dom-elements-no-children': 2, //Prevent void DOM elements
-
-    //eslint-plugin-react-hooks
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 0,
-
-    //import
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        mjs: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ], //Ensure consistent use of file extension within the import path
-    'import/no-unresolved': 'off', //Ensures an imported module can be resolved to a module on the local filesystem
-    'import/prefer-default-export': 'off', //When there is only a single export from a module, prefer using default export over named export
-    //Forbid the import of external modules that are not declared in the `package.json`'s `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies`, or `bundledDependencies`
-    'import/no-extraneous-dependencies': 'off',
-    'import/no-cycle': 'off', //Ensures that there is no resolvable path back to this module via its dependencies
-
-    // jsx-a11y
-    'jsx-a11y/control-has-associated-label': 'off', //Enforce that a control (an interactive element) has a text label
-    'jsx-a11y/click-events-have-key-events': 'off', //Enforce `onClick` is accompanied by at least one of the following: `onKeyUp`, `onKeyDown`, `onKeyPress`
-    'jsx-a11y/no-static-element-interactions': 'off', //Static HTML elements do not have semantic meaning.
-    'jsx-a11y/interactive-supports-focus': 'off', //Elements with an interactive role and interaction handlers (mouse or key press) must be focusable
-    'jsx-a11y/anchor-is-valid': 'off', //The HTML `<a>` element, with a valid `href` attribute, is formally defined as representing a **hyperlink**
-    'jsx-a11y/label-has-associated-control': 'off', //Enforce that a label tag has a text label and an associated control.
-
-    //ts
-    'brace-style': ['error', '1tbs', { allowSingleLine: true }], //大括号风格要求
-    indent: [
-      'error',
-      2,
-      {
-        SwitchCase: 1,
-        VariableDeclarator: 1,
-        outerIIFEBody: 1,
-        // MemberExpression: null,
-        FunctionDeclaration: {
-          parameters: 1,
-          body: 1
-        },
-        FunctionExpression: {
-          parameters: 1,
-          body: 1
-        },
-        CallExpression: {
-          arguments: 1
-        },
-        ArrayExpression: 1,
-        ObjectExpression: 1,
-        ImportDeclaration: 1,
-        flatTernaryExpressions: false,
-        // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
-        ignoredNodes: [
-          'JSXElement',
-          'JSXElement > *',
-          'JSXAttribute',
-          'JSXIdentifier',
-          'JSXNamespacedName',
-          'JSXMemberExpression',
-          'JSXSpreadAttribute',
-          'JSXExpressionContainer',
-          'JSXOpeningElement',
-          'JSXClosingElement',
-          'JSXFragment',
-          'JSXOpeningFragment',
-          'JSXClosingFragment',
-          'JSXText',
-          'JSXEmptyExpression',
-          'JSXSpreadChild'
-        ],
-        ignoreComments: false
-      }
-    ], //强制使用一致的缩进
-    // 'no-extra-parens': [
-    //   'off',
-    //   'all',
-    //   {
-    //     conditionalAssign: true,
-    //     nestedBinaryExpressions: false,
-    //     returnAssign: false,
-    //     ignoreJSX: 'all', // delegate to eslint-plugin-react
-    //     enforceForArrowConditionals: false
-    //   }
-    // ], //禁止不必要的括号
-    'no-magic-numbers': [
-      'off',
-      {
-        ignore: [],
-        ignoreArrayIndexes: true,
-        enforceConst: true,
-        detectObjects: false
-      }
-    ], //禁止使用魔术数字
-    semi: ['error', 'always'], //要求或禁止使用分号代替
-    // 'space-before-function-paren': [
-    //   'error',
-    //   {
-    //     anonymous: 'always',
-    //     named: 'never',
-    //     asyncArrow: 'always'
-    //   }
-    // ], //要求或禁止函数圆括号之前有一个空格
-
-    //others
     'react/sort-comp': [
       'error',
       {
@@ -411,6 +278,118 @@ module.exports = {
       }
     ],
 
+    //JSX指定的规则
+    'react/jsx-boolean-value': [2, 'always'], //Enforce boolean attributes notation in JSX
+    'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }], //Enforce curly braces or disallow unnecessary curly braces in JSX props and/or children.
+    'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }], // Restrict file extensions that may contain JSX
+    'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
+    'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
+    'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
+
+    //eslint-plugin-react-hooks
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 0,
+
+    //import
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        mjs: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
+      }
+    ], //Ensure consistent use of file extension within the import path
+    'import/no-unresolved': 'off', //Ensures an imported module can be resolved to a module on the local filesystem
+    'import/prefer-default-export': 'off', //When there is only a single export from a module, prefer using default export over named export
+    //Forbid the import of external modules that are not declared in the `package.json`'s `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies`, or `bundledDependencies`
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-cycle': 'off', //Ensures that there is no resolvable path back to this module via its dependencies
+
+    // jsx-a11y
+    'jsx-a11y/control-has-associated-label': 'off', //Enforce that a control (an interactive element) has a text label
+    'jsx-a11y/click-events-have-key-events': 'off', //Enforce `onClick` is accompanied by at least one of the following: `onKeyUp`, `onKeyDown`, `onKeyPress`
+    'jsx-a11y/no-static-element-interactions': 'off', //Static HTML elements do not have semantic meaning.
+    'jsx-a11y/interactive-supports-focus': 'off', //Elements with an interactive role and interaction handlers (mouse or key press) must be focusable
+    'jsx-a11y/anchor-is-valid': 'off', //The HTML `<a>` element, with a valid `href` attribute, is formally defined as representing a **hyperlink**
+    'jsx-a11y/label-has-associated-control': 'off', //Enforce that a label tag has a text label and an associated control.
+
+    // ts
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": ["error"], //大括号风格要求
+    "@typescript-eslint/await-thenable": ["error"],  //Disallows awaiting a value that is not a Thenable
+    "comma-spacing": "off",
+    "@typescript-eslint/comma-spacing": ["error"],  // 强制在逗号后面使用空格
+    "dot-notation": "off",
+    "@typescript-eslint/dot-notation": ["error"],  // 强制尽可能地使用点号
+    "func-call-spacing": "off",
+    "@typescript-eslint/func-call-spacing": ["error"], //禁止在函数标识符和其调用之间有空格
+    "indent": "off",
+    "@typescript-eslint/indent": [
+      'error',
+      2,
+      {
+        SwitchCase: 1,
+        VariableDeclarator: 1,
+        outerIIFEBody: 1,
+        FunctionDeclaration: {
+          parameters: 1,
+          body: 1
+        },
+        FunctionExpression: {
+          parameters: 1,
+          body: 1
+        },
+        CallExpression: {
+          arguments: 1
+        },
+        ArrayExpression: 1,
+        ObjectExpression: 1,
+        ImportDeclaration: 1,
+        flatTernaryExpressions: false,
+        // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+        ignoredNodes: [
+          'JSXElement',
+          'JSXElement > *',
+          'JSXAttribute',
+          'JSXIdentifier',
+          'JSXNamespacedName',
+          'JSXMemberExpression',
+          'JSXSpreadAttribute',
+          'JSXExpressionContainer',
+          'JSXOpeningElement',
+          'JSXClosingElement',
+          'JSXFragment',
+          'JSXOpeningFragment',
+          'JSXClosingFragment',
+          'JSXText',
+          'JSXEmptyExpression',
+          'JSXSpreadChild'
+        ],
+        ignoreComments: false
+      }
+    ], //强制使用一致的缩进
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": ["error"],  //要求或禁止在类成员之间出现空行
+    "no-array-constructor": "off",
+    "@typescript-eslint/no-array-constructor": ["error"],  //禁止使用 Array 构造函数
+    "no-dupe-class-members": "off",
+    "@typescript-eslint/no-dupe-class-members": ["error"],  //不允许类成员中有重复的名称
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error"],  //禁止出现空函数
+    "no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": ["error"],  //Disallow the declaration of empty interfaces
+    "no-extra-semi": "off",
+    "@typescript-eslint/no-extra-semi": ["error"],  //禁用不必要的分号
+    "no-throw-literal": "off",
+    "@typescript-eslint/no-throw-literal": ["error"],  // //限制可以被抛出的异常
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"],  // //限制可以被抛出的异常
+    "semi": "off",
+    "@typescript-eslint/semi": ["error"],  // 要求或禁止使用分号代替 ASI
+
     //airbnb推荐的规则
     'class-methods-use-this': [
       'error',
@@ -418,12 +397,10 @@ module.exports = {
         exceptMethods: []
       }
     ], //强制类方法使用 this
-    'dot-notation': ['error', { allowKeywords: true }], //强制尽可能地使用点号
     // 'dot-location': ['error', 'property'], //强制在点号之前或之后换行
     'guard-for-in': 'error', //需要约束 for-in
     'max-classes-per-file': 0, //强制每个文件中包含的的类的最大数量
     'no-alert': 'warn', //禁用 Alert
-    'no-empty-function': 0, //禁止出现空函数
     'no-new-func': 'error', //禁止使用 new 以避免产生副作用
     'no-restricted-properties': [
       'error',
@@ -479,15 +456,6 @@ module.exports = {
     'no-lone-blocks': 'error', //禁用不必要的嵌套块
     'no-loop-func': 'error', //禁止循环中存在函数
     'no-return-assign': ['error', 'always'], //禁止在返回语句中赋值
-    'no-throw-literal': 'error', //限制可以被抛出的异常
-    // 'no-unused-expressions': [
-    //   'error',
-    //   {
-    //     allowShortCircuit: true,
-    //     allowTernary: true,
-    //     allowTaggedTemplates: true
-    //   }
-    // ], //禁止未使用过的表达式
     'no-void': 'error', //禁止使用void操作符
     'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }], // 要求使用 Error 对象作为 Promise 拒绝的原因
     'no-await-in-loop': 'error', //禁止在循环中 出现 await
@@ -497,7 +465,6 @@ module.exports = {
         allowParens: true
       }
     ], //禁止在可能与比较操作符相混淆的地方使用箭头函数
-    'no-useless-constructor': 'error', //禁用不必要的构造函数
     // 'prefer-template': 'error', //建议使用模板字面量而非字符串连接
     'template-curly-spacing': 'error', //强制模板字符串中空格的使用
     // 'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
@@ -518,27 +485,7 @@ module.exports = {
     'import/no-self-import': 'error', //Forbid a module from importing itself
     'import/no-useless-path-segments': ['error', { commonjs: true }], //use this rule to prevent unnecessary path segments in import and require statements.
     'global-require': 'error', //use this rule to prevent unnecessary path segments in import and require statements.
-    // 'comma-style': [
-    //   'error',
-    //   'last',
-    //   {
-    //     exceptions: {
-    //       ArrayExpression: false,
-    //       ArrayPattern: false,
-    //       ArrowFunctionExpression: false,
-    //       CallExpression: false,
-    //       FunctionDeclaration: false,
-    //       FunctionExpression: false,
-    //       ImportDeclaration: false,
-    //       ObjectExpression: false,
-    //       ObjectPattern: false,
-    //       VariableDeclaration: false,
-    //       NewExpression: false
-    //     }
-    //   }
-    // ], //逗号风格
     'eol-last': ['error', 'always'], //要求或禁止文件末尾保留一行空行
-    // 'function-paren-newline': ['error', 'consistent'], //强制在函数括号内使用一致的换行
     'lines-around-directive': [
       'error',
       {
@@ -546,26 +493,6 @@ module.exports = {
         after: 'always'
       }
     ], //?
-    // 'newline-per-chained-call': ['error', { ignoreChainWithDepth: 4 }], //要求方法链中每个调用都有一个换行符
-    // 'no-mixed-operators': [
-    //   'error',
-    //   {
-    //     // the list of arthmetic groups disallows mixing `%` and `**`
-    //     // with other arithmetic operators.
-    //     groups: [
-    //       ['%', '**'],
-    //       ['%', '+'],
-    //       ['%', '-'],
-    //       ['%', '*'],
-    //       ['%', '/'],
-    //       ['/', '*'],
-    //       ['&', '|', '<<', '>>', '>>>'],
-    //       ['==', '!=', '===', '!=='],
-    //       ['&&', '||']
-    //     ],
-    //     allowSamePrecedence: false
-    //   }
-    // ], //禁止混合使用不同的操作符
     'no-nested-ternary': 'error', //禁止使用嵌套的三元表达式
     'no-restricted-syntax': [
       'error',
@@ -584,11 +511,7 @@ module.exports = {
     'no-tabs': 'error', // 禁用 tab
     'switch-colon-spacing': ['error', { after: true, before: false }], //强制在 switch 的冒号左右有空格
     'template-tag-spacing': ['error', 'never'], //要求或禁止在模板标记和它们的字面量之间有空格
-    // 'unicode-bom': ['error', 'never'], //禁止使用 Unicode 字节顺序标记
-    // 'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }], // Enforce or disallow spaces inside of curly braces in JSX attributes and expressions.
     'react/self-closing-comp': 'error', //Prevent extra closing tags for components without children
-    // 'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'], //Configure the position of the first property
-    // 'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
     'react/no-unused-prop-types': [
       'error',
       {
@@ -606,27 +529,11 @@ module.exports = {
         beforeClosing: 'never'
       }
     ], // Validate whitespace in and around the JSX opening and closing brackets
-    // 'react/no-array-index-key': 'error', //Prevent usage of Array index in keys
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }], //Forbid foreign propTypes
     'react/no-redundant-should-component-update': 'error', //Prevent usage of shouldComponentUpdate when extending React.PureComponent
     'react/no-typos': 'error', //Prevents common typos
     'react/no-access-state-in-setstate': 'error', //Prevent using this.state within a this.setState
     'react/no-this-in-sfc': 'error', //Prevent `this` from being used in stateless functional components
-    // 'react/jsx-curly-newline': [
-    //   'error',
-    //   {
-    //     multiline: 'consistent',
-    //     singleline: 'consistent'
-    //   }
-    // ], //Enforce linebreaks in curly braces in JSX attributes and expressions.
-    // 'react/jsx-props-no-spreading': [
-    //   'warn',
-    //   {
-    //     html: 'enforce',
-    //     custom: 'enforce',
-    //     exceptions: []
-    //   }
-    // ], //Disallow JSX props spreading
     'jsx-a11y/aria-role': ['error', { ignoreNonDom: false }], //aria-role
     'jsx-a11y/aria-props': 'error', //Elements cannot use an invalid ARIA attribute. This will fail if it finds an `aria-*` property
     'jsx-a11y/aria-proptypes': 'error', //ARIA state and property values must be valid.

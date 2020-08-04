@@ -1,4 +1,4 @@
-## 禁止 Symbolnew 操作符和 new 一起使用 (no-new-symbol)
+## 禁止 Symbol 操作符和 new 一起使用 (no-new-symbol)
 
 ```配置文件中的 "extends": "eslint:recommended" 属性启用了此规则。```
 

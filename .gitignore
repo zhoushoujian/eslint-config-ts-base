@@ -48,6 +48,4 @@ Temporary Items
 /.eslintcache
 /node_modules
 package-lock.json
-CHANGELOG.md
 dist
-
