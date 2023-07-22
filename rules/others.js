@@ -3,6 +3,10 @@ module.exports = {
     //很可能是错误
     'no-template-curly-in-string': 2, // 禁止在常规字符串中出现模板字面量占位符语法
 
+    //建议
+    'no-console': 1, //禁用 console
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: false }], //要求使用一致的 return 语句
+
     //严格模式
     strict: 2, // 要求使用严格模式指令
 
@@ -15,5 +19,5 @@ module.exports = {
     'no-buffer-constructor': 2, //禁用 Buffer() 构造函数
     'no-new-require': 2, //不允许 new require
     'no-path-concat': 2 //当使用 _dirname 和 _filename 时不允许字符串拼接
-  },
+  }
 };

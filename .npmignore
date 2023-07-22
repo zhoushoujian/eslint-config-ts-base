@@ -1,7 +1,5 @@
 .vscode
-dist
 docs
-lib
 node_modules
 .editorconfig
 .eslintigonore

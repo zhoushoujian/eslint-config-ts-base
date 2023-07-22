@@ -15,7 +15,7 @@ module.exports = {
       tsx: true,
       modules: true,
     },
-    project: './tsconfig.json'
+    project: require('path').join(__dirname, './tsconfig.json'),
   },
   rules: {
     // "0"表示忽略问题，等同于"off";
@@ -27,6 +27,10 @@ module.exports = {
     // eslint-plugin-react-hooks官方地址：https://github.com/facebook/react/tree/c11015ff4f610ac2924d1fc6d569a17657a404fd/packages/eslint-plugin-react-hooks
     // eslint-plugin-import官方地址：https://github.com/benmosher/eslint-plugin-import
     // @typescript-eslint/eslint-plugin官方地址: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
+    // tsdoc官方地址: https://github.com/microsoft/tsdoc/tree/master/eslint-plugin
+    // eslint-plugin-jsdoc官方地址: https://github.com/gajus/eslint-plugin-jsdoc
+
+    'prettier/prettier': 'error',
 
     // eslint推荐的规则
     'for-direction': 2, //强制 “for” 循环中更新子句的计数器朝着正确的方向移动
@@ -75,7 +79,7 @@ module.exports = {
     'no-shadow-restricted-names': 2, // 禁止变量声明覆盖外层作用域的变量
     'no-undef': 2, //不允许使用undefined变量
     'no-unused-vars': 0,
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }], //禁止未使用过的变量
+    '@typescript-eslint/no-unused-vars': [1, { argsIgnorePattern: '^_' }], //禁止未使用过的变量
     'no-mixed-spaces-and-tabs': 2, //禁止使用 空格 和 tab 混合缩进
     'constructor-super': 2, // 验证构造函数中 super() 的调用
     'no-class-assign': 2, //不允许修改类声明的变量
@@ -86,6 +90,10 @@ module.exports = {
 
     //很可能是错误
     'no-template-curly-in-string': 2, // 禁止在常规字符串中出现模板字面量占位符语法
+
+    //建议
+    'no-console': 1, //禁用 console
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: false }], //要求使用一致的 return 语句
 
     //严格模式
     strict: 2, // 要求使用严格模式指令
@@ -125,7 +133,7 @@ module.exports = {
     'vars-on-top': 2, //要求将变量声明放在它们作用域的顶部
     // 'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
     yoda: 2, //要求或者禁止Yoda条件
-    radix: ['error', 'as-needed'], //要求必须有基数,但禁止提供基数10
+    radix: ['error', 'always'], //要求必须有基数
     curly: ['error', 'multi-line'], //要求遵循大括号约定
 
     //这些规则与变量声明有关：
@@ -150,8 +158,8 @@ module.exports = {
       'always',
       {
         ignoreConstructors: false,
-        avoidQuotes: true
-      }
+        avoidQuotes: true,
+      },
     ], //要求对象字面量简写语法
     'prefer-const': ['error', { destructuring: 'all' }], //只有解构的值都没有被赋值才用const
     'prefer-numeric-literals': 2, //禁用 parseInt() 和 Number.parseInt()，使用二进制，八进制和十六进制字面量
@@ -160,6 +168,17 @@ module.exports = {
     'rest-spread-spacing': 2, //强制剩余和扩展运算符及其表达式之间有空格
     'symbol-description': 2, //要求 symbol 描述
     // 'arrow-parens': ['error', 'as-needed'], //要求箭头函数的参数使用圆括号
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'antd',
+            message: 'Please use @shuyun-ep-team/kylin-ui instead.',
+          },
+        ],
+      },
+    ], // 禁用特定的 import
 
     //关于风格
     // 'array-bracket-newline': ['error', 'consistent'], // 对每个括号要求使用一致的换行符。如果一个括号有换行符，另一个没有，则会报错
@@ -172,7 +191,7 @@ module.exports = {
     'new-parens': 2, //要求调用无参构造函数时带括号
     'no-bitwise': 2, //禁止使用按位操作符
     'no-multi-assign': 2, //禁止连续赋值
-    'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }], //不允许多个空行
+    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }], //不允许多个空行
     'no-new-object': 2, //禁止使用 Object 构造函数
     'no-whitespace-before-property': 2, //禁止属性前有空白
     'semi-spacing': 2, //强制分号后有空格
@@ -181,15 +200,15 @@ module.exports = {
     'space-unary-ops': 2, //要求在一元操作符之前或之后存在空格
     'max-len': [
       'error',
-      150,
+      120,
       2,
       {
         ignoreUrls: true,
         ignoreComments: false,
         ignoreRegExpLiterals: true,
         ignoreStrings: true,
-        ignoreTemplateLiterals: true
-      }
+        ignoreTemplateLiterals: true,
+      },
     ], //强制行的最大长度
 
     //React相关
@@ -218,8 +237,8 @@ module.exports = {
       {
         button: false,
         submit: true,
-        reset: false
-      }
+        reset: false,
+      },
     ], //Prevent usage of `button` elements without an explicit `type` attribute. If you use only `"submit"` buttons, you can disable this rule
     'react/no-danger': 0, //Prevent usage of dangerous JSX properties
     'react/destructuring-assignment': 2, // Enforce consistent usage of destructuring assignment of props, state, and context
@@ -243,7 +262,7 @@ module.exports = {
           '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/',
           'instance-methods',
           'everything-else',
-          'rendering'
+          'rendering',
         ],
         groups: {
           lifecycle: [
@@ -271,37 +290,37 @@ module.exports = {
             'getSnapshotBeforeUpdate',
             'componentDidUpdate',
             'componentDidCatch',
-            'componentWillUnmount'
+            'componentWillUnmount',
           ],
-          rendering: ['/^render.+$/', 'render']
-        }
-      }
+          rendering: ['/^render.+$/', 'render'],
+        },
+      },
     ],
 
     //JSX指定的规则
     'react/jsx-boolean-value': [2, 'always'], //Enforce boolean attributes notation in JSX
     'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }], //Enforce curly braces or disallow unnecessary curly braces in JSX props and/or children.
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }], // Restrict file extensions that may contain JSX
-    'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
+    // 'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
     'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
     'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
 
     //eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 0,
+    'react-hooks/exhaustive-deps': 'error',
 
     //import
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        mjs: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ], //Ensure consistent use of file extension within the import path
+    // 'import/extensions': [
+    //   'error',
+    //   'ignorePackages',
+    //   {
+    //     js: 'never',
+    //     mjs: 'never',
+    //     jsx: 'never',
+    //     ts: 'never',
+    //     tsx: 'never',
+    //   },
+    // ], //Ensure consistent use of file extension within the import path
     'import/no-unresolved': 'off', //Ensures an imported module can be resolved to a module on the local filesystem
     'import/prefer-default-export': 'off', //When there is only a single export from a module, prefer using default export over named export
     //Forbid the import of external modules that are not declared in the `package.json`'s `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies`, or `bundledDependencies`
@@ -313,37 +332,37 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off', //Enforce `onClick` is accompanied by at least one of the following: `onKeyUp`, `onKeyDown`, `onKeyPress`
     'jsx-a11y/no-static-element-interactions': 'off', //Static HTML elements do not have semantic meaning.
     'jsx-a11y/interactive-supports-focus': 'off', //Elements with an interactive role and interaction handlers (mouse or key press) must be focusable
-    'jsx-a11y/anchor-is-valid': 'off', //The HTML `<a>` element, with a valid `href` attribute, is formally defined as representing a **hyperlink**
     'jsx-a11y/label-has-associated-control': 'off', //Enforce that a label tag has a text label and an associated control.
 
     // ts
-    "brace-style": "off",
-    "@typescript-eslint/brace-style": ["error"], //大括号风格要求
-    "@typescript-eslint/await-thenable": ["error"],  //Disallows awaiting a value that is not a Thenable
-    "comma-spacing": "off",
-    "@typescript-eslint/comma-spacing": ["error"],  // 强制在逗号后面使用空格
-    "dot-notation": "off",
-    "@typescript-eslint/dot-notation": ["error"],  // 强制尽可能地使用点号
-    "func-call-spacing": "off",
-    "@typescript-eslint/func-call-spacing": ["error"], //禁止在函数标识符和其调用之间有空格
-    "indent": "off",
-    "@typescript-eslint/indent": [
+    'brace-style': 'off',
+    '@typescript-eslint/brace-style': ['error'], //大括号风格要求
+    '@typescript-eslint/await-thenable': ['error'], //Disallows awaiting a value that is not a Thenable
+    'comma-spacing': 'off',
+    '@typescript-eslint/comma-spacing': ['error'], // 强制在逗号后面使用空格
+    'dot-notation': 'off',
+    '@typescript-eslint/dot-notation': ['error'], // 强制尽可能地使用点号
+    'func-call-spacing': 'off',
+    '@typescript-eslint/func-call-spacing': ['error'], //禁止在函数标识符和其调用之间有空格
+    indent: 'off',
+    '@typescript-eslint/indent': [
       'error',
       2,
       {
+        MemberExpression: 'off',
         SwitchCase: 1,
         VariableDeclarator: 1,
         outerIIFEBody: 1,
         FunctionDeclaration: {
           parameters: 1,
-          body: 1
+          body: 1,
         },
         FunctionExpression: {
           parameters: 1,
-          body: 1
+          body: 1,
         },
         CallExpression: {
-          arguments: 1
+          arguments: 1,
         },
         ArrayExpression: 1,
         ObjectExpression: 1,
@@ -366,37 +385,36 @@ module.exports = {
           'JSXClosingFragment',
           'JSXText',
           'JSXEmptyExpression',
-          'JSXSpreadChild'
+          'JSXSpreadChild',
         ],
-        ignoreComments: false
-      }
+        ignoreComments: false,
+      },
     ], //强制使用一致的缩进
-    "lines-between-class-members": "off",
-    "@typescript-eslint/lines-between-class-members": ["error"],  //要求或禁止在类成员之间出现空行
-    "no-array-constructor": "off",
-    "@typescript-eslint/no-array-constructor": ["error"],  //禁止使用 Array 构造函数
-    "no-dupe-class-members": "off",
-    "@typescript-eslint/no-dupe-class-members": ["error"],  //不允许类成员中有重复的名称
-    "no-empty-function": "off",
-    "@typescript-eslint/no-empty-function": ["error"],  //禁止出现空函数
-    "no-empty-interface": "off",
-    "@typescript-eslint/no-empty-interface": ["error"],  //Disallow the declaration of empty interfaces
-    "no-extra-semi": "off",
-    "@typescript-eslint/no-extra-semi": ["error"],  //禁用不必要的分号
-    "no-throw-literal": "off",
-    "@typescript-eslint/no-throw-literal": ["error"],  // //限制可以被抛出的异常
-    "no-useless-constructor": "off",
-    "@typescript-eslint/no-useless-constructor": ["error"],  // //限制可以被抛出的异常
-    "semi": "off",
-    "@typescript-eslint/semi": ["error"],  // 要求或禁止使用分号代替 ASI
+    'lines-between-class-members': 'off',
+    '@typescript-eslint/lines-between-class-members': ['error'], //要求或禁止在类成员之间出现空行
+    'no-array-constructor': 'off',
+    '@typescript-eslint/no-array-constructor': ['error'], //禁止使用 Array 构造函数
+    'no-dupe-class-members': 'off',
+    '@typescript-eslint/no-dupe-class-members': ['error'], //不允许类成员中有重复的名称
+    'no-empty-interface': 'off',
+    '@typescript-eslint/no-empty-interface': ['error'], //Disallow the declaration of empty interfaces
+    'no-extra-semi': 'off',
+    '@typescript-eslint/no-extra-semi': ['error'], //禁用不必要的分号
+    'no-throw-literal': 'off',
+    '@typescript-eslint/no-throw-literal': ['error'], // //限制可以被抛出的异常
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': ['error'], // //限制可以被抛出的异常
+    semi: 'off',
+    '@typescript-eslint/semi': ['error'], // 要求或禁止使用分号代替 ASI
+    // "tsdoc/syntax": "warn", // provides a rule for validating that TypeScript doc comments
 
     //airbnb推荐的规则
-    'class-methods-use-this': [
-      'error',
-      {
-        exceptMethods: []
-      }
-    ], //强制类方法使用 this
+    // 'class-methods-use-this': [
+    //   'error',
+    //   {
+    //     exceptMethods: []
+    //   }
+    // ], //强制类方法使用 this
     // 'dot-location': ['error', 'property'], //强制在点号之前或之后换行
     'guard-for-in': 'error', //需要约束 for-in
     'max-classes-per-file': 0, //强制每个文件中包含的的类的最大数量
@@ -407,51 +425,51 @@ module.exports = {
       {
         object: 'arguments',
         property: 'callee',
-        message: 'arguments.callee is deprecated'
+        message: 'arguments.callee is deprecated',
       },
       {
         object: 'global',
         property: 'isFinite',
-        message: 'Please use Number.isFinite instead'
+        message: 'Please use Number.isFinite instead',
       },
       {
         object: 'self',
         property: 'isFinite',
-        message: 'Please use Number.isFinite instead'
+        message: 'Please use Number.isFinite instead',
       },
       {
         object: 'window',
         property: 'isFinite',
-        message: 'Please use Number.isFinite instead'
+        message: 'Please use Number.isFinite instead',
       },
       {
         object: 'global',
         property: 'isNaN',
-        message: 'Please use Number.isNaN instead'
+        message: 'Please use Number.isNaN instead',
       },
       {
         object: 'self',
         property: 'isNaN',
-        message: 'Please use Number.isNaN instead'
+        message: 'Please use Number.isNaN instead',
       },
       {
         object: 'window',
         property: 'isNaN',
-        message: 'Please use Number.isNaN instead'
+        message: 'Please use Number.isNaN instead',
       },
       {
         property: '__defineGetter__',
-        message: 'Please use Object.defineProperty instead.'
+        message: 'Please use Object.defineProperty instead.',
       },
       {
         property: '__defineSetter__',
-        message: 'Please use Object.defineProperty instead.'
+        message: 'Please use Object.defineProperty instead.',
       },
       {
         object: 'Math',
         property: 'pow',
-        message: 'Use the exponentiation operator (**) instead.'
-      }
+        message: 'Use the exponentiation operator (**) instead.',
+      },
     ],
     'no-lone-blocks': 'error', //禁用不必要的嵌套块
     'no-loop-func': 'error', //禁止循环中存在函数
@@ -462,15 +480,15 @@ module.exports = {
     'no-confusing-arrow': [
       'error',
       {
-        allowParens: true
-      }
+        allowParens: true,
+      },
     ], //禁止在可能与比较操作符相混淆的地方使用箭头函数
     // 'prefer-template': 'error', //建议使用模板字面量而非字符串连接
     'template-curly-spacing': 'error', //强制模板字符串中空格的使用
     // 'yield-star-spacing': ['error', 'after'], //强制在 yield* 表达式中 * 周围使用空格
     'import/named': 'error', //Verifies that all named imports are part of the set of named exports in the referenced module.
     'import/export': 'error', //Reports funny business with exports, like repeated exports of names or defaults.
-    'import/no-named-as-default': 'error', //Reports use of an exported name as the locally imported name of a default export.
+    // 'import/no-named-as-default': 'error', //Reports use of an exported name as the locally imported name of a default export.
     'import/no-named-as-default-member': 'error', //Reports use of an exported name as a property on the default export.
     'import/no-mutable-exports': 'error', //Forbids the use of mutable exports with `var` or `let`.
     'import/no-amd': 'error', //Intended for temporary use when migrating to pure ES6 modules.
@@ -490,22 +508,19 @@ module.exports = {
       'error',
       {
         before: 'always',
-        after: 'always'
-      }
+        after: 'always',
+      },
     ], //?
-    'no-nested-ternary': 'error', //禁止使用嵌套的三元表达式
     'no-restricted-syntax': [
       'error',
       {
         selector: 'LabeledStatement',
-        message:
-          'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.'
+        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
       },
       {
         selector: 'WithStatement',
-        message:
-          '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.'
-      }
+        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      },
     ], //禁止使用特定的语法
     'no-spaced-func': 'error', //?
     'no-tabs': 'error', // 禁用 tab
@@ -516,19 +531,19 @@ module.exports = {
       'error',
       {
         customValidators: [],
-        skipShapeProps: true
-      }
+        skipShapeProps: true,
+      },
     ], //Prevent definitions of unused propTypes
     'react/style-prop-object': 'error', //Enforce style prop value being an object
-    'react/jsx-tag-spacing': [
-      'error',
-      {
-        closingSlash: 'never',
-        beforeSelfClosing: 'always',
-        afterOpening: 'never',
-        beforeClosing: 'never'
-      }
-    ], // Validate whitespace in and around the JSX opening and closing brackets
+    // 'react/jsx-tag-spacing': [
+    //   'error',
+    //   {
+    //     closingSlash: 'never',
+    //     beforeSelfClosing: 'always',
+    //     afterOpening: 'never',
+    //     beforeClosing: 'never'
+    //   }
+    // ], // Validate whitespace in and around the JSX opening and closing brackets
     'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }], //Forbid foreign propTypes
     'react/no-redundant-should-component-update': 'error', //Prevent usage of shouldComponentUpdate when extending React.PureComponent
     'react/no-typos': 'error', //Prevents common typos
@@ -545,8 +560,8 @@ module.exports = {
         img: [],
         object: [],
         area: [],
-        'input[type="image"]': []
-      }
+        'input[type="image"]': [],
+      },
     ], //Enforce that all elements that require alternative text have meaningful information to relay back to the end user
     'jsx-a11y/img-redundant-alt': 'error', //Enforce img alt attribute does not contain the word image, picture, or photo
     'jsx-a11y/mouse-events-have-key-events': 'error', //Enforce onmouseover/onmouseout are accompanied by onfocus/onblur.
@@ -558,8 +573,8 @@ module.exports = {
     'jsx-a11y/no-distracting-elements': [
       'error',
       {
-        elements: ['marquee', 'blink']
-      }
+        elements: ['marquee', 'blink'],
+      },
     ], //Enforces that no distracting elements are use
     'jsx-a11y/scope': 'error', //The `scope` scope should be used only on `<th>` elements.
     'jsx-a11y/accessible-emoji': 'error', //Emoji have become a common way of communicating content to the end user
@@ -570,8 +585,8 @@ module.exports = {
     'jsx-a11y/no-interactive-element-to-noninteractive-role': [
       'error',
       {
-        tr: ['none', 'presentation']
-      }
+        tr: ['none', 'presentation'],
+      },
     ], //Interactive HTML elements indicate _controls_ in the user interface
     'jsx-a11y/no-noninteractive-element-to-interactive-role': [
       'error',
@@ -580,29 +595,50 @@ module.exports = {
         ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
         li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
         table: ['grid'],
-        td: ['gridcell']
-      }
+        td: ['gridcell'],
+      },
     ], //Non-interactive HTML elements indicate _content_ and _containers_ in the user interface
     'jsx-a11y/no-noninteractive-tabindex': [
       'error',
       {
         tags: [],
-        roles: ['tabpanel']
-      }
+        roles: ['tabpanel'],
+      },
     ], //Tab key navigation should be limited to elements on the page that can be interacted with
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: ['Link'],
-        specialLink: ['to'],
-        aspects: ['noHref', 'invalidHref', 'preferButton']
-      }
-    ] //anchor-is-valid
+
+    //js注释
+    // "jsdoc/check-access": 1, // Recommended
+    // "jsdoc/check-alignment": 1, // Recommended
+    // "jsdoc/check-param-names": 1, // Recommended
+    // "jsdoc/check-property-names": 1, // Recommended
+    // "jsdoc/check-tag-names": 1, // Recommended
+    // "jsdoc/check-types": 1, // Recommended
+    // "jsdoc/check-values": 1, // Recommended
+    // "jsdoc/empty-tags": 1, // Recommended
+    // "jsdoc/implements-on-classes": 1, // Recommended
+    // "jsdoc/newline-after-description": 1, // Recommended
+    // "jsdoc/no-undefined-types": 1, // Recommended
+    // "jsdoc/require-jsdoc": 1, // Recommended
+    // "jsdoc/require-param": 1, // Recommended
+    // "jsdoc/require-param-description": 1, // Recommended
+    // "jsdoc/require-param-name": 1, // Recommended
+    // "jsdoc/require-param-type": 1, // Recommended
+    // "jsdoc/require-property": 1, // Recommended
+    // "jsdoc/require-property-description": 1, // Recommended
+    // "jsdoc/require-property-name": 1, // Recommended
+    // "jsdoc/require-property-type": 1, // Recommended
+    // "jsdoc/require-returns": 1, // Recommended
+    // "jsdoc/require-returns-check": 1, // Recommended
+    // "jsdoc/require-returns-description": 1, // Recommended
+    // "jsdoc/require-returns-type": 1, // Recommended
+    // "jsdoc/require-yields": 1, // Recommended
+    // "jsdoc/require-yields-check": 1, // Recommended
+    // "jsdoc/valid-types": 1 // Recommended
   },
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
   },
   settings: {
     react: {
@@ -613,19 +649,19 @@ module.exports = {
       // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
       // default to latest and warns if missing
       // It will default to "detect" in the future
-      flowVersion: '0.53' // Flow version
+      flowVersion: '0.53', // Flow version
     },
     linkComponents: [
       // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
       'Hyperlink',
-      { name: 'Link', linkAttribute: 'to' }
+      { name: 'Link', linkAttribute: 'to' },
     ],
     'import/resolver': {
       node: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json']
-      }
+        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+      },
     },
-    'import/extensions': ['.js', '.ts', '.jsx', '.tsx']
+    'import/extensions': ['.js', '.ts', '.jsx', '.tsx'],
   },
-  plugins: ['react', 'import', 'react-hooks', 'jsx-a11y', '@typescript-eslint']
+  plugins: ['react', 'import', 'react-hooks', 'jsx-a11y', '@typescript-eslint', 'prettier'],
 };

@@ -34,7 +34,7 @@ module.exports = {
     'vars-on-top': 2, //要求将变量声明放在它们作用域的顶部
     // 'wrap-iife': ['error', 'any'], //需要把立即执行的函数包裹起来
     yoda: 2, //要求或者禁止Yoda条件
-    radix: ['error', 'as-needed'], //要求必须有基数,但禁止提供基数10
+    radix: ['error', 'always'], //要求必须有基数
     curly: ['error', 'multi-line'], //要求遵循大括号约定
     'no-return-assign': ['error', 'except-parens'] // https://eslint.cn/docs/rules/no-return-assign
   }

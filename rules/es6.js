@@ -31,6 +31,6 @@ module.exports = {
     'prefer-spread': 2, //建议使用扩展语法而非.apply()
     'rest-spread-spacing': 2, //强制剩余和扩展运算符及其表达式之间有空格
     'symbol-description': 2 //要求 symbol 描述
-    // 'arrow-parens': ['error', 'as-needed'] //要求箭头函数的参数使用圆括号
+    // 'arrow-parens': ['error', 'as-needed'], //要求箭头函数的参数使用圆括号
   }
 };

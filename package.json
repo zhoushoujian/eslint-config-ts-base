@@ -1,10 +1,10 @@
 {
   "name": "eslint-config-ts-base",
-  "description": "eslint for typescript",
+  "description": "eslint config for typescript&react",
   "license": "MIT",
-  "Private": false,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
+  "homepage": "https://github.com/zhoushoujian/ESLint",
   "scripts": {
     "checkcode:all": "npm run checkcode:index && npm run checkcode:base && npm run checkcode:react && npm run checkcode:vue && npm run checkcode:typescript",
     "checkcode:index": "eslint -c ./test/.eslintrc.index.js \"./test/index.ts\"",
@@ -12,30 +12,51 @@
     "checkcode:react": "npx eslint -c ./test/.eslintrc.react.js \"./test/react.jsx\"",
     "checkcode:vue": "eslint -c ./test/.eslintrc.vue.js \"./test/vue.vue\"",
     "checkcode:typescript": "eslint -c ./test/.eslintrc.ts.js \"./test/typescript.ts\"",
-    "publishToNpm": "node scripts/publish"
+    "publishToNpm": "node scripts/publish",
+    "postpublishToNpm": "git push && git push origin --tags"
   },
+  "files": [
+    "rules",
+    "test",
+    ".prettierrc.js",
+    "base.js",
+    "CHANGELOG.md",
+    "comment.js",
+    "index.js",
+    "package.json",
+    "prettier.js",
+    "react.js",
+    "README.md",
+    "tsconfig.json",
+    "typescript.js",
+    "vue.js"
+  ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
+    "@shuyun-ep-team/specified-package-version-check": "^1.10.1",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "axios": "^0.21.3",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.8.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsdoc": "^34.6.3",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "eslint-plugin-vue": "^7.9.0",
+    "figlet": "^1.5.2",
     "prettier": "^2.0.4",
-    "vue-eslint-parser": "^7.1.0"
-  },
-  "peerDependencies": {
-    "eslint": "^6.8.0"
+    "vue-eslint-parser": "^7.6.0"
   },
   "devDependencies": {
-    "typescript": "^3.8.3",
     "react": "^16.13.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.7.4"
   },
   "keywords": [
     "config",

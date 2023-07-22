@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 module.exports = {
-  extends: [],
-  parser: "babel-eslint",
+  extends: ['./rules/airbnb-jsx.js'],
+  parser: 'babel-eslint',
   parserOptions: {
     target: 'es5',
     module: 'ESNext',
@@ -9,34 +10,35 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
       modules: true
-    },
+    }
   },
   env: {
     browser: true,
     es6: true
   },
-  "settings": {
-    "react": {
-      "createClass": "createReactClass", // Regex for Component Factory to use,
+  settings: {
+    react: {
+      createClass: 'createReactClass', // Regex for Component Factory to use,
       // default to "createReactClass"
-      "pragma": "React",  // Pragma to use, default to "React"
-      "version": "detect", // React version. "detect" automatically picks the version you have installed.
+      pragma: 'React', // Pragma to use, default to "React"
+      //to available in non-react project, such as npm package
+      version: '16.3', // React version. "detect" automatically picks the version you have installed.
       // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
       // default to latest and warns if missing
       // It will default to "detect" in the future
-      "flowVersion": "0.53" // Flow version
+      flowVersion: '0.53' // Flow version
     },
-    "propWrapperFunctions": [
+    propWrapperFunctions: [
       // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`.
       // If this isn't set, any propTypes wrapped in a function will be skipped.
-      "forbidExtraProps",
-      { "property": "freeze", "object": "Object" },
-      { "property": "myFavoriteWrapper" }
+      'forbidExtraProps',
+      { property: 'freeze', object: 'Object' },
+      { property: 'myFavoriteWrapper' }
     ],
-    "linkComponents": [
+    linkComponents: [
       // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
-      "Hyperlink",
-      { "name": "Link", "linkAttribute": "to" }
+      'Hyperlink',
+      { name: 'Link', linkAttribute: 'to' }
     ]
   },
   plugins: ['react', 'import', 'react-hooks'],
@@ -125,13 +127,13 @@ module.exports = {
           rendering: ['/^render.+$/', 'render']
         }
       }
-    ],  //Enforce component methods order
+    ], //Enforce component methods order
 
     //JSX指定的规则
     'react/jsx-boolean-value': [2, 'always'], //Enforce boolean attributes notation in JSX
     'react/jsx-curly-brace-presence': [2, { props: 'never', children: 'never' }], //Enforce curly braces or disallow unnecessary curly braces in JSX props and/or children.
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }], // Restrict file extensions that may contain JSX
-    'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
+    // 'react/jsx-no-useless-fragment': 2, //  Disallow unnecessary fragments
     'react/jsx-pascal-case': 2, //Enforce PascalCase for user-defined JSX components
     'react/jsx-props-no-multi-spaces': 2, //Disallow multiple spaces between inline JSX props
 
@@ -140,18 +142,16 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off', //Enforce `onClick` is accompanied by at least one of the following: `onKeyUp`, `onKeyDown`, `onKeyPress`
     'jsx-a11y/no-static-element-interactions': 'off', //Static HTML elements do not have semantic meaning.
     'jsx-a11y/interactive-supports-focus': 'off', //Elements with an interactive role and interaction handlers (mouse or key press) must be focusable
-    'jsx-a11y/anchor-is-valid': 'off', //The HTML `<a>` element, with a valid `href` attribute, is formally defined as representing a **hyperlink**
     'jsx-a11y/label-has-associated-control': 'off', //Enforce that a label tag has a text label and an associated control.
 
     //react-hooks
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 0,
+    'react-hooks/exhaustive-deps': 'error',
 
-    "@typescript-eslint/no-throw-literal": ["off"],
-    "@typescript-eslint/dot-notation": ["off"],
-    "@typescript-eslint/await-thenable": ["off"],
-    "no-empty-interface": "off",
-    "@typescript-eslint/no-empty-interface": ["off"]
-
+    '@typescript-eslint/no-throw-literal': ['off'],
+    '@typescript-eslint/dot-notation': ['off'],
+    '@typescript-eslint/await-thenable': ['off'],
+    'no-empty-interface': 'off',
+    '@typescript-eslint/no-empty-interface': ['off']
   }
 };

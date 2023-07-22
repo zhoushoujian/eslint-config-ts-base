@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ["applePic", "apple", "changeWeight", "eatApple"]
+  props: ['applePic', 'apple', 'changeWeight', 'eatApple'],
 };
 </script>
 
@@ -11,7 +11,7 @@ export default {
     </div>
     <div class="info">
       <div class="name">abc - 222号</div>
-      <div class="weight">{{apple.currentWeight}}克</div>
+      <div class="weight">{{ apple.currentWeight }}克</div>
     </div>
     <div class="btn-div">
       <button @click="eatApple(apple)">吃掉</button>
@@ -19,4 +19,3 @@ export default {
     </div>
   </div>
 </template>
-

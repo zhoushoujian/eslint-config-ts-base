@@ -1,11 +1,5 @@
 module.exports = {
-  extends: [
-    './base.js',
-    './react.js',
-    './typescript',
-    'prettier',
-    './rules/prettier'
-  ],
+  extends: ['./base.js', './react.js', './vue.js', './typescript.js', './prettier.js'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     target:
@@ -19,7 +13,8 @@ module.exports = {
       tsx: true,
       modules: true
     },
-    project: './tsconfig.json'
+    // eslint-disable-next-line global-require
+    project: require('path').join(__dirname, './tsconfig.json')
   },
   env: {
     browser: true,
@@ -27,14 +22,6 @@ module.exports = {
     jasmine: true,
     jest: true,
     es6: true
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json']
-      }
-    },
-    'import/extensions': ['.js', '.ts', '.jsx', '.tsx']
   },
   overrides: [
     {

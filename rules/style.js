@@ -10,7 +10,7 @@ module.exports = {
     'new-parens': 2, //要求调用无参构造函数时带括号
     'no-bitwise': 2, //禁止使用按位操作符
     'no-multi-assign': 2, //禁止连续赋值
-    'no-multiple-empty-lines': ["error", { "max": 2, "maxEOF": 1 }], //不允许多个空行
+    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }], //不允许多个空行
     'no-new-object': 2, //禁止使用 Object 构造函数
     'no-whitespace-before-property': 2, //禁止属性前有空白
     'semi-spacing': 2, //强制分号后有空格
@@ -19,7 +19,7 @@ module.exports = {
     'space-unary-ops': 2, //要求在一元操作符之前或之后存在空格
     'max-len': [
       'error',
-      150,
+      120,
       2,
       {
         ignoreUrls: true,
@@ -28,6 +28,6 @@ module.exports = {
         ignoreStrings: true,
         ignoreTemplateLiterals: true
       }
-    ], //强制行的最大长度
-  },
+    ] //强制行的最大长度
+  }
 };

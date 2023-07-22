@@ -28,7 +28,7 @@ function syncTaoBao() {
 }
 
 function executeCmd(cmd, logInfo) {
-  return new Promise((res) => {
+  return new Promise(res => {
     const child = shell.exec(cmd, { async: true });
     child.stdout.on('data', function (data) {
       console.log(`${logInfo} stdout: `, data);
@@ -65,7 +65,7 @@ changeNpmConfig()
     console.log('发布成功');
     process.exit(0);
   })
-  .catch((err) => {
+  .catch(err => {
     console.error('publish catch err', err);
     process.exit(1);
   });
